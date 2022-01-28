@@ -11,10 +11,10 @@ TagManager:
   - 
   - Water
   - UI
-  - Wall
-  - 
-  - Ground
-  - 
+  - WallPlayer1
+  - WallPlayer2
+  - GroundPlayer1
+  - GroundPlayer2
   - 
   - 
   - 
