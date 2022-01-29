@@ -504,6 +504,10 @@ PrefabInstance:
       value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 309615977949096111, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 309615977949096111, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: m_TagString
       value: Player2
       objectReference: {fileID: 0}
@@ -1204,10 +1208,37 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   speedText: {fileID: 35925180}
+--- !u!114 &830459105 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1984971272, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+  m_PrefabInstance: {fileID: 1699622645}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e2a7379ee4c30c44a2de39e07bcd5b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &881312682 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3231127404722875143, guid: 0b20a1f2406c26147b5bab0d3abb10d5, type: 3}
   m_PrefabInstance: {fileID: 788275343}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &899155824 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1984971271, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+  m_PrefabInstance: {fileID: 1699622645}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ab2f4aff3fc00847833d548f524b898, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &899155829 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 195708624700099933, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+  m_PrefabInstance: {fileID: 1699622645}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &939406361
 GameObject:
@@ -2060,25 +2091,57 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1984971271, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
-      propertyPath: runSpeed
-      value: 45
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 899155829}
+    - target: {fileID: 1984971271, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1984971271, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 830459105}
     - target: {fileID: 1984971272, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: jumpVelocity
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1984971272, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
-      propertyPath: fallMultiplier
-      value: 5
+      propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1984971272, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
-      propertyPath: m_MovementSmoothing
-      value: 0.075
+      propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1984971272, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
-      propertyPath: m_WhatIsGround.m_Bits
-      value: 256
+      propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 899155824}
+    - target: {fileID: 1984971272, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+      propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1984971272, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+      propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnLanding
+      objectReference: {fileID: 0}
+    - target: {fileID: 1984971272, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+      propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Movement2D, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1984971272, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+      propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 195708624700099933, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 195708624700099933, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 334fd80278a862a469f515a793bbcd11, type: 2}
     - target: {fileID: 309615977153791943, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: m_Layer
       value: 30

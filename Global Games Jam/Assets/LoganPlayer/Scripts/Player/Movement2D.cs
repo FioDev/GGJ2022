@@ -4,39 +4,39 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
 
+
 public class Movement2D : MonoBehaviour
 {
 
     public CharacterController2D controller;
 
-    public float runSpeed = 40f;
+    public float runSpeed = 40.0f;
 
     private bool moving = false;
-    private float horizontalMove = 0f;
-    private float horizontalStore;
+    private float horizontalMove = 0.0f;
     private bool jump = false;
+    //private bool crouch = false;
+    //private bool fire = false;
+    private float horizontalStore;
+ 
     public bool nonStop = false;
     public float playerNumber = 1;
+
+	public Animator animator;
 
     // Update is called once per frame
     void Update()
     {
         //Gets the players horizontal direction
         horizontalMove = Input.GetAxisRaw("Horizontal" + playerNumber) * runSpeed;
-
-        if (horizontalMove != 0f)
+		animator.SetFloat("Speed",Mathf.Abs(horizontalMove));
+        if (horizontalMove != 0.0f)
         {
-            horizontalStore = horizontalMove;
             moving = true;
         }
         else
         {
             moving = false;
-        }
-
-        if (nonStop)
-        {
-            horizontalMove = horizontalStore;
         }
 
         /*
@@ -46,28 +46,29 @@ public class Movement2D : MonoBehaviour
 		}
 		*/
 
-        /*
-        if(controller.m_Grounded)
+        if (controller.m_Grounded)
         {
             jump = false;
+			animator.SetBool("IsJumping", false);
             //Gets if the player should jumping
             if (Input.GetButton("Jump" + playerNumber))
             {
                 jump = true;
+				animator.SetBool("IsJumping",true);
             }
 
         }
-		*/
 
-   		//Gets if the player should jump
-		if (Input.GetButtonDown("Jump" + playerNumber))
-		{
-			jump = true;
-		}
-		else if (Input.GetButtonUp("Jump" + playerNumber))
-		{
-			jump = false;
-		}
+        //animator.SetFloat("Speed",Mathf.Abs(horizontalMove));
+        //Gets if the player should jumping
+        // if (Input.GetButtonDown("Jump"))
+        // {
+        // 	jump = true;
+        // }
+        // else
+        // {
+        // 	jump = false;
+        // }
 
         /*
 		if(Input.GetButtonDown("Cancel"))
@@ -78,6 +79,10 @@ public class Movement2D : MonoBehaviour
 
     }
 
+	public void OnLanding()
+	{
+		animator.SetBool("IsJumping", false);
+	}
     void FixedUpdate()
     {
         //Passes all inputs to CharacterController2D

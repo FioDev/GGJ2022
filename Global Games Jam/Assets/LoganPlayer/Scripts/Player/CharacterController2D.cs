@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
 public class CharacterController2D : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class CharacterController2D : MonoBehaviour
 
     public int ID = 0;
 
+    public UnityEvent OnLandEvent;
+
+    public class BoolEvent : UnityEvent<bool> { }
     private void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -115,7 +119,7 @@ public class CharacterController2D : MonoBehaviour
     {
         // Switch the way the player is labelled as facing.
         m_FacingRight = !m_FacingRight;
-        //transform.Rotate(0f, 180f, 0f);
+        transform.Rotate(0f, 180f, 0f);
     }
 
     /*
