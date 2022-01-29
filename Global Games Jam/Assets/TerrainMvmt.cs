@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TerrainMvmt : MonoBehaviour
 {
@@ -12,12 +13,23 @@ public class TerrainMvmt : MonoBehaviour
     Vector2 cameraMotion;
     float totalTime = 0;
 
+    float speedValue = 0;
+
+    public Text speedText;
+
     // Update is called once per frame
     void Update()
     {
         totalTime += Time.deltaTime;
 
-        cameraMotion = new Vector2(0f, MaximumSpeed * SpeedOverTime.Evaluate(totalTime / TimeUntilMaxSpeedSeconds));
+        speedValue = MaximumSpeed * SpeedOverTime.Evaluate(totalTime / TimeUntilMaxSpeedSeconds);
+        cameraMotion = new Vector2(0f, speedValue);
         transform.Translate(cameraMotion * Time.deltaTime * direction);
+        if(speedValue >= 10){
+            speedText.text = speedValue.ToString().Substring(0,2);
+        } else {
+
+        speedText.text = speedValue.ToString().Substring(0,3);
+        }
     }
 }
