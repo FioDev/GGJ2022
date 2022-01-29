@@ -11,10 +11,10 @@ TagManager:
   - 
   - Water
   - UI
-  - WallPlayer1
-  - WallPlayer2
-  - GroundPlayer1
-  - GroundPlayer2
+  - BackgroundPlayer1
+  - BackgroundPlayer2
+  - SolidBlockPlayer1
+  - SolidBlockPlayer2
   - 
   - 
   - 
@@ -41,10 +41,7 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Wall
-    uniqueID: 1728181453
-    locked: 0
-  - name: Ground
+  - name: Tilemap
     uniqueID: 2800617277
     locked: 0
   - name: Player
