@@ -17,6 +17,9 @@ public class TerrainManager : MonoBehaviour
 
     private void Start()
     {
+        GroundPlayer1.ClearAllTiles();
+        GroundPlayer2.ClearAllTiles();
+
         TileType[,] noise = new TileType[5, 10];
         int width = noise.GetLength(0), height = noise.GetLength(1);
 
@@ -24,7 +27,7 @@ public class TerrainManager : MonoBehaviour
         {
             for (int x = 0; x < width; x++)
             {
-                if(x == 0 || y == 0 || x == width - 1 || x == height - 1)
+                if (x == 0 || y == 0 || x == width - 1 || x == height - 1)
                 {
                     noise[x, y] = TileType.Ground;
                 }
