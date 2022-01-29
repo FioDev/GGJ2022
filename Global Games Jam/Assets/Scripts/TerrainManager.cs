@@ -33,6 +33,7 @@ public class TerrainManager : MonoBehaviour
     public TileBase Player2Hazards;
 
     private Vector3Int lastPlatformPosition;
+    private int lastWallSpikesY;
 
     [Header("Settings")]
     public TerrainSettings Settings;
@@ -181,7 +182,6 @@ public class TerrainManager : MonoBehaviour
                         p1hazards.Add(Player1Hazards);
                         p2hazards.Add(Player2Hazards);
                     }
-
                 }
             }
         }
@@ -189,9 +189,23 @@ public class TerrainManager : MonoBehaviour
         // Chance to do spikes on the wall
         if (r.NextDouble() < Settings.SpikeOnWallChance)
         {
-            // Get left or right
+            // Get left or right position
             int xPos = r.Next(0, 2) == 0 ? xMin + 1 : xMax - 1;
+            int numberOfSpikes = r.Next(Settings.MinSpikesOnWallGroup, Settings.MaxSpikesOnWallGroup);
 
+            if (y - numberOfSpikes / 2 - lastWallSpikesY >= Settings.MinWallSpikeDistance)
+            {
+                for (int i = 0; i < numberOfSpikes; i++)
+                {
+                    int newY = y - (numberOfSpikes / 2) + i;
+
+                    hazardPositions.Add(new Vector3Int(xPos, newY, 0));
+                    p1hazards.Add(Player1Hazards);
+                    p2hazards.Add(Player2Hazards);
+                }
+
+                lastWallSpikesY = y;
+            }
         }
 
 #endif

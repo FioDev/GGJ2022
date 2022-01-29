@@ -32,8 +32,13 @@ public class TerrainSettings : ScriptableObject
     public float SpikeOnPlatformChance = 0.2f;
 
     [Range(0, 1)]
-    public float SpikeOnWallChance = 0.2f;
+    public float SpikeOnWallChance = 0.1f;
     [Min(0)]
     public int MinWallSpikeDistance = 2;
+
+    [Min(0)]
+    public int MinSpikesOnWallGroup = 2;
+    [Min(0)]
+    public int MaxSpikesOnWallGroup = 4;
 
 }
