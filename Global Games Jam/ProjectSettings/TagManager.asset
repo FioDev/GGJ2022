@@ -48,3 +48,6 @@ TagManager:
   - name: Ground
     uniqueID: 2800617277
     locked: 0
+  - name: Camera
+    uniqueID: 275461751
+    locked: 0

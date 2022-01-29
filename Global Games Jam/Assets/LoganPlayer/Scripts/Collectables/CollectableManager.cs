@@ -5,6 +5,7 @@ using UnityEngine;
 public class CollectableManager : MonoBehaviour
 {
     public OrbUI orbUIManager;
+    public EffectManager effectMan;
     public int requiredCollectables; //Number of orbs a player needs to collect to send a debuff
 
     private int currentCollectables = 0; //Number of orbs player currently has
@@ -26,7 +27,7 @@ public class CollectableManager : MonoBehaviour
         {
             //Send Debuff here..
             Debug.Log("Send debuff!");
-
+            effectMan.RandomizeEffect();
             currentCollectables = 0;
         }
     }
