@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
-  m_Name: Platform
+  m_Name: Player 1 Platform
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 21300000, guid: 90d2f87d591ea1c458054cdb8d74b331, type: 3}
+  m_DefaultSprite: {fileID: 21300000, guid: 52d9fb4e7dace3e41bb174a2b6979db5, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules:
   - m_Id: 3
     m_Sprites:
-    - {fileID: 21300000, guid: 1d1c675f9a5c8394ab78a7a219722096, type: 3}
+    - {fileID: 21300000, guid: c2b45e366719caf4899c72506b5125c2, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
@@ -33,7 +33,7 @@ MonoBehaviour:
     m_RuleTransform: 0
   - m_Id: 0
     m_Sprites:
-    - {fileID: 21300000, guid: 9ac908241456d8048bcc6e42c27cc023, type: 3}
+    - {fileID: 21300000, guid: 9117b95b5289e0c44a75a851d1375b43, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
@@ -48,7 +48,7 @@ MonoBehaviour:
     m_RuleTransform: 0
   - m_Id: 1
     m_Sprites:
-    - {fileID: 21300000, guid: 2579fc3ba965072498eef7fd779dd2dc, type: 3}
+    - {fileID: 21300000, guid: 4b478e0b3f6e7714e87dcbe09b0d3dc9, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1

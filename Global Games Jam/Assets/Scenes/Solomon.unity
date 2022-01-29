@@ -1232,7 +1232,7 @@ MonoBehaviour:
   Player1Platform: {fileID: 11400000, guid: 99e8a3c56971ba743ae4c50b0010df3a, type: 2}
   Player2Tile: {fileID: 11400000, guid: 2a98f9e6775ca094b9865904aac9b961, type: 2}
   Player2BackgroundTile: {fileID: 11400000, guid: 5dc9e624bb78e2b4b95287fff0f9e1c9, type: 2}
-  Player2Platform: {fileID: 11400000, guid: 99e8a3c56971ba743ae4c50b0010df3a, type: 2}
+  Player2Platform: {fileID: 11400000, guid: 3e9af1a58a3571641846c808493acc81, type: 2}
   Settings: {fileID: 11400000, guid: fead42de5194fcf4390a0766e4c9cf5e, type: 2}
 --- !u!114 &1076644193
 MonoBehaviour:
