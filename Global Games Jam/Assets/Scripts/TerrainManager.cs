@@ -1,8 +1,10 @@
+// Enable/disable fio gen
+#define DO_FIO_GEN
+
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 using System;
-
 
 public class TerrainManager : MonoBehaviour
 {
@@ -87,6 +89,48 @@ public class TerrainManager : MonoBehaviour
         List<Vector3Int> platformPositions = new List<Vector3Int>();
         List<TileBase> platformTiles = new List<TileBase>();
 
+
+
+#if DO_FIO_GEN
+
+        for (int y = -Settings.Height / 2; y < Settings.Height / 2; y++)
+        {
+            List<TileType>[] tiles = TilemapGenerator.Instance.GenerateTileRow(Settings.Width, 1, y);
+
+
+            string outputLog = "";
+
+            foreach (TileType t in tiles[2])
+            {
+                if (t == TileType.Air)
+                {
+                    outputLog += "O";
+                }
+                else if (t == TileType.Ground)
+                {
+                    outputLog += "X";
+                }
+            }
+
+            Debug.Log(outputLog);
+
+            for (int i = 0; i < tiles[2].Count; i++)
+            {
+
+                Debug.Log("HERE");
+                switch (tiles[2][i])
+                {
+                    case TileType.Air:
+                        break;
+                    case TileType.Ground:
+                        platformPositions.Add(new Vector3Int(i, y, 0));
+                        platformTiles.Add(PlatformPlayer1);
+                        
+                        break;
+                }
+            }
+        }
+#else
         int GetRandomBetweenMinMax(int min, int max)
         {
             return (int)(UnityEngine.Random.value * (max - min) + min);
@@ -110,6 +154,7 @@ public class TerrainManager : MonoBehaviour
                 }
             }
         }
+#endif
 
         PlatformsPlayer1.SetTiles(platformPositions.ToArray(), platformTiles.ToArray());
         PlatformsPlayer2.SetTiles(platformPositions.ToArray(), platformTiles.ToArray());

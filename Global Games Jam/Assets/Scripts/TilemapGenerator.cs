@@ -18,14 +18,14 @@ public class TilemapGenerator : MonoBehaviour
     ProcNoise noiseGen;
 
     //Singleton
-    TilemapGenerator instance;
+    public static TilemapGenerator Instance { get; protected set; }
 
     private void Awake()
     {
         //Singleton
-        if (instance != null)
+        if (Instance != null)
         {
-            instance = this;
+            Instance = this;
         }
 
         noiseGen = new ProcNoise();
@@ -34,37 +34,16 @@ public class TilemapGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        List<TileType>[] x = new List<TileType>[2];
-        x = GenerateTileRow(10, 2, Time.time);
-
-        string outputLog = "";
-
-        foreach (TileType y in x[1])
-        {
-            if (y == TileType.Air)
-            {
-                outputLog += "O";
-            } else if (y == TileType.Ground)
-            {
-                outputLog += "X";
-            }
-        }
-
-        Debug.Log(outputLog);
-    }
 
     //Width in tiles. Playerwidth in tiles (IN THE SAME SCALE AS WIDTH), height to generate as a float (Any scale you want)
     public List<TileType>[] GenerateTileRow(int width, int playerWidth, float heightToGenerate)
     {
         List<TileType>[] temp = new List<TileType>[2];
         List<TileType> tempLayer = new List<TileType>();
-        
+
         for (int layer = 0; layer < 2; layer++)
         {
             TileType tileToAdd;
@@ -114,12 +93,14 @@ public class TilemapGenerator : MonoBehaviour
                             {
                                 tileToAdd = TileType.Collectable;
                                 tempLayer.Add(tileToAdd);
-                            } else
+                            }
+                            else
                             {
                                 tileToAdd = TileType.Air;
                                 tempLayer.Add(tileToAdd);
                             }
-                        } else 
+                        }
+                        else
                         {
                             tileToAdd = TileType.Air;
                             tempLayer.Add(tileToAdd);

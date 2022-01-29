@@ -994,6 +994,7 @@ GameObject:
   - component: {fileID: 1076644191}
   - component: {fileID: 1076644190}
   - component: {fileID: 1076644192}
+  - component: {fileID: 1076644193}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -1054,6 +1055,18 @@ MonoBehaviour:
   WhiteTile: {fileID: 11400000, guid: 2a98f9e6775ca094b9865904aac9b961, type: 2}
   PlatformPlayer1: {fileID: 11400000, guid: 99e8a3c56971ba743ae4c50b0010df3a, type: 2}
   Settings: {fileID: 11400000, guid: fead42de5194fcf4390a0766e4c9cf5e, type: 2}
+--- !u!114 &1076644193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076644189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7296dbf38ae34f4eba8efef0a476c98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1170758581
 GameObject:
   m_ObjectHideFlags: 0
