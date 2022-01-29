@@ -24,10 +24,13 @@ public class TerrainManager : MonoBehaviour
     public TileBase Player1Tile;
     public TileBase Player1BackgroundTile;
     public TileBase Player1Platform;
+    public TileBase Player1Hazards;
 
+    [Space]
     public TileBase Player2Tile;
     public TileBase Player2BackgroundTile;
     public TileBase Player2Platform;
+    public TileBase Player2Hazards;
 
 
     [Header("Settings")]
@@ -52,13 +55,25 @@ public class TerrainManager : MonoBehaviour
         BackgroundPlayer1.ClearAllTiles();
         BackgroundPlayer2.ClearAllTiles();
 
+        // Solid blocks for the edges
         List<Vector3Int> borders = new List<Vector3Int>();
         List<TileBase> p1Borders = new List<TileBase>();
         List<TileBase> p2Borders = new List<TileBase>();
 
+        // Background
         List<Vector3Int> background = new List<Vector3Int>();
         List<TileBase> p1Walls = new List<TileBase>();
         List<TileBase> p2Walls = new List<TileBase>();
+
+        // Platforms
+        List<Vector3Int> platformPositions = new List<Vector3Int>();
+        List<TileBase> p1PlatformTiles = new List<TileBase>();
+        List<TileBase> p2PlatformTiles = new List<TileBase>();
+
+        // Hazards
+        List<Vector3Int> hazardPositions = new List<Vector3Int>();
+        List<TileBase> p1hazards = new List<TileBase>();
+        List<TileBase> p2hazards = new List<TileBase>();
 
         int xMin = -Settings.Width / 2;
         int xMax = Settings.Width / 2 - 1;
@@ -88,12 +103,6 @@ public class TerrainManager : MonoBehaviour
         SolidBlocksPlayer2.SetTiles(borders.ToArray(), p2Borders.ToArray());
         BackgroundPlayer1.SetTiles(background.ToArray(), p1Walls.ToArray());
         BackgroundPlayer2.SetTiles(background.ToArray(), p2Walls.ToArray());
-
-
-        List<Vector3Int> platformPositions = new List<Vector3Int>();
-        List<TileBase> p1PlatformTiles = new List<TileBase>();
-        List<TileBase> p2PlatformTiles = new List<TileBase>();
-
 
 
 
@@ -158,10 +167,21 @@ public class TerrainManager : MonoBehaviour
                     platformPositions.Add(new Vector3Int(newX, y, 0));
                     p1PlatformTiles.Add(Player1Platform);
                     p2PlatformTiles.Add(Player2Platform);
+
+
+                    // Just do spikes here for now
+                    if(UnityEngine.Random.value < 0.2f)
+                    {
+                        hazardPositions.Add(new Vector3Int(newX, y + 1, 0));
+                        p1hazards.Add(Player1Hazards);
+                        p2hazards.Add(Player2Hazards);
+                    }
                 }
             }
         }
 #endif
+        HazardsPlayer1.SetTiles(hazardPositions.ToArray(), p1hazards.ToArray());
+        HazardsPlayer2.SetTiles(hazardPositions.ToArray(), p2hazards.ToArray());
 
         PlatformsPlayer1.SetTiles(platformPositions.ToArray(), p1PlatformTiles.ToArray());
         PlatformsPlayer2.SetTiles(platformPositions.ToArray(), p2PlatformTiles.ToArray());
