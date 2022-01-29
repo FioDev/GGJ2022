@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Player2
+  - Player1
   layers:
   - Default
   - TransparentFX
@@ -33,8 +35,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - DeathZone1
+  - DeathZone2
   - Player1
   - Player2
   m_SortingLayers:
