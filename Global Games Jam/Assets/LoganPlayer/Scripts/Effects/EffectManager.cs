@@ -8,6 +8,7 @@ public class EffectManager : MonoBehaviour
     private float randomNumber = 0;
     private float storeRandom = 0;
     public Movement2D move2D;
+    public TerrainMvmt terrainMove;
     public void RandomizeEffect()
     {
 
@@ -48,6 +49,7 @@ public class EffectManager : MonoBehaviour
     private void ScrollSpeedUp() //The stage scrolls faster
     {
         print("Scroll speed up!");
+        terrainMove.MaximumSpeed = 6;
         StartCoroutine(EffectWaitTime(1));
     }
 
@@ -68,7 +70,7 @@ public class EffectManager : MonoBehaviour
     private void ReverseScroll() //Stage starts scrolling in reverse
     {
         print("Reverse!");
-        StartCoroutine(EffectWaitTime(4));
+        terrainMove.direction *= -1;
     }
 
     IEnumerator EffectWaitTime(int ID)
@@ -76,9 +78,6 @@ public class EffectManager : MonoBehaviour
         yield return new WaitForSeconds(8);
         switch (ID)
         {
-            case 4:
-
-                break;
             case 3:
                 move2D.nonStop = false;
                 break;
@@ -86,7 +85,7 @@ public class EffectManager : MonoBehaviour
                 move2D.runSpeed = 30;
                 break;
             case 1:
-
+                terrainMove.MaximumSpeed = 4;
                 break;
             case 0:
 

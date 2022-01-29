@@ -15,6 +15,7 @@ public class Movement2D : MonoBehaviour
     private bool moving = false;
     private float horizontalMove = 0.0f;
     private bool jump = false;
+	private bool dive = false;
     //private bool crouch = false;
     //private bool fire = false;
     private float horizontalStore;
@@ -59,6 +60,19 @@ public class Movement2D : MonoBehaviour
 
         }
 
+		if (!controller.m_Grounded)
+        {
+            //Gets if the player should dive
+            if (Input.GetButton("Dive" + playerNumber))
+            {
+                dive = true;
+            }
+			else
+			{
+				dive = false;
+			}
+        }
+
         //animator.SetFloat("Speed",Mathf.Abs(horizontalMove));
         //Gets if the player should jumping
         // if (Input.GetButtonDown("Jump"))
@@ -86,6 +100,6 @@ public class Movement2D : MonoBehaviour
     void FixedUpdate()
     {
         //Passes all inputs to CharacterController2D
-        controller.Move(horizontalMove * Time.fixedDeltaTime, jump, runSpeed, moving);
+        controller.Move(horizontalMove * Time.fixedDeltaTime, jump, dive, runSpeed, moving);
     }
 }

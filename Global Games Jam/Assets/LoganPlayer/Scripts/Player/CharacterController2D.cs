@@ -46,17 +46,16 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    public void Move(float move, bool jump, float runSpeed, bool moving)
+    public void Move(float move, bool jump, bool dive, float runSpeed, bool moving)
     {
 
         //only control the player if grounded or airControl is turned on
         if (m_Grounded || m_AirControl)
         {
+            m_Rigidbody2D.gravityScale = 2;
 
             if (m_Grounded)
             {
-                
-                
                 if (!jump)
                 {
                     jumpHeld = false;
@@ -72,7 +71,7 @@ public class CharacterController2D : MonoBehaviour
                     m_Rigidbody2D.velocity += Vector2.up * jumpVelocity;
 
                 }
-                
+
 
             }
 
@@ -88,6 +87,11 @@ public class CharacterController2D : MonoBehaviour
                 else if (m_Rigidbody2D.velocity.y > 0 && !jump)
                 {
                     m_Rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+                }
+
+                if (dive)
+                {
+                    m_Rigidbody2D.gravityScale *= 10;
                 }
             }
 
