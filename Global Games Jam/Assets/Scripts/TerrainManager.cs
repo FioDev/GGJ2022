@@ -32,20 +32,13 @@ public class TerrainManager : MonoBehaviour
     public TileBase Player2Platform;
     public TileBase Player2Hazards;
 
+    private Vector3Int lastPlatformPosition;
 
     [Header("Settings")]
     public TerrainSettings Settings;
 
     private void Start()
     {
-        UnityEngine.Random.InitState(0);
-        GenerateAllTerrain();
-    }
-
-    protected void GenerateAllTerrain()
-    {
-        DateTime before = DateTime.Now;
-
         SolidBlocksPlayer1.ClearAllTiles();
         SolidBlocksPlayer2.ClearAllTiles();
         BackgroundPlayer1.ClearAllTiles();
@@ -54,6 +47,13 @@ public class TerrainManager : MonoBehaviour
         HazardsPlayer2.ClearAllTiles();
         BackgroundPlayer1.ClearAllTiles();
         BackgroundPlayer2.ClearAllTiles();
+
+        GenerateAllTerrain();
+    }
+
+    protected void GenerateTerrainForHeight(int y)
+    {
+        System.Random r = new System.Random(y); 
 
         // Solid blocks for the edges
         List<Vector3Int> borders = new List<Vector3Int>();
@@ -78,31 +78,21 @@ public class TerrainManager : MonoBehaviour
         int xMin = -Settings.Width / 2;
         int xMax = Settings.Width / 2 - 1;
 
-        // Offset the positions so that the map is centered at 0, 0
-        for (int y = -Settings.Height / 2; y < Settings.Height / 2; y++)
+        // Borders
+        borders.Add(new Vector3Int(xMin, y, 0));
+        borders.Add(new Vector3Int(xMax, y, 0));
+        p1Borders.Add(Player1Tile);
+        p1Borders.Add(Player1Tile);
+        p2Borders.Add(Player2Tile);
+        p2Borders.Add(Player2Tile);
+
+        // Background
+        for (int i = xMin; i <= xMax; i++)
         {
-            // Borders
-            borders.Add(new Vector3Int(xMin, y, 0));
-            borders.Add(new Vector3Int(xMax, y, 0));
-            p1Borders.Add(Player1Tile);
-            p1Borders.Add(Player1Tile);
-            p2Borders.Add(Player2Tile);
-            p2Borders.Add(Player2Tile);
-
-            // Background
-            for (int i = xMin; i <= xMax; i++)
-            {
-                background.Add(new Vector3Int(i, y, 0));
-                p1Walls.Add(Player1BackgroundTile);
-                p2Walls.Add(Player2BackgroundTile);
-            }
+            background.Add(new Vector3Int(i, y, 0));
+            p1Walls.Add(Player1BackgroundTile);
+            p2Walls.Add(Player2BackgroundTile);
         }
-
-        // Set border tiles
-        SolidBlocksPlayer1.SetTiles(borders.ToArray(), p1Borders.ToArray());
-        SolidBlocksPlayer2.SetTiles(borders.ToArray(), p2Borders.ToArray());
-        BackgroundPlayer1.SetTiles(background.ToArray(), p1Walls.ToArray());
-        BackgroundPlayer2.SetTiles(background.ToArray(), p2Walls.ToArray());
 
 
 
@@ -146,17 +136,16 @@ public class TerrainManager : MonoBehaviour
             }
         }
 #else
-        int GetRandomBetweenMinMax(int min, int max)
-        {
-            return (int)(UnityEngine.Random.value * (max - min) + min);
-        }
 
-        for (int y = -Settings.Height / 2; y < Settings.Height / 2; y += GetRandomBetweenMinMax(Settings.MinPlatformDistanceY, Settings.MaxPlatformDistanceY))
-        {
-            int sign = (int)(UnityEngine.Random.value * 2) - 1;
-            int x = 0 + sign * GetRandomBetweenMinMax(Settings.MinPlatformDistanceX, Settings.MaxPlatformDistanceX);
 
-            int platformWidth = GetRandomBetweenMinMax(Settings.MinPlatformWidth, Settings.MaxPlatformWidth);
+        bool doPlatformOnLayer = r.NextDouble() < Settings.NewPlatformChance;
+
+        if(doPlatformOnLayer)
+        {
+            int sign = r.Next(0, 2) == 0 ? -1 : 1;
+            int x = 0 + sign * r.Next(Settings.MinPlatformDistanceX, Settings.MaxPlatformDistanceX);
+
+            int platformWidth = r.Next(Settings.MinPlatformWidth, Settings.MaxPlatformWidth);
 
             for (int i = 0; i < platformWidth; i++)
             {
@@ -170,7 +159,7 @@ public class TerrainManager : MonoBehaviour
 
 
                     // Just do spikes here for now
-                    if(UnityEngine.Random.value < 0.2f)
+                    if (r.NextDouble() < 0.2f)
                     {
                         hazardPositions.Add(new Vector3Int(newX, y + 1, 0));
                         p1hazards.Add(Player1Hazards);
@@ -180,11 +169,39 @@ public class TerrainManager : MonoBehaviour
             }
         }
 #endif
+
+        // Now set the tiles
+        BackgroundPlayer1.SetTiles(background.ToArray(), p1Walls.ToArray());
+        BackgroundPlayer2.SetTiles(background.ToArray(), p2Walls.ToArray());
         HazardsPlayer1.SetTiles(hazardPositions.ToArray(), p1hazards.ToArray());
         HazardsPlayer2.SetTiles(hazardPositions.ToArray(), p2hazards.ToArray());
-
         PlatformsPlayer1.SetTiles(platformPositions.ToArray(), p1PlatformTiles.ToArray());
         PlatformsPlayer2.SetTiles(platformPositions.ToArray(), p2PlatformTiles.ToArray());
+        SolidBlocksPlayer1.SetTiles(borders.ToArray(), p1Borders.ToArray());
+        SolidBlocksPlayer2.SetTiles(borders.ToArray(), p2Borders.ToArray());
+    }
+
+    protected void GenerateAllTerrain()
+    {
+        DateTime before = DateTime.Now;
+
+        lastPlatformPosition = new Vector3Int(0, 0, 0);
+
+        // Offset the positions so that the map is centered at 0, 0
+        for (int y = -Settings.Height / 2; y < Settings.Height / 2; y++)
+        {
+            GenerateTerrainForHeight(y);
+        }
+
+        // Ensure there is a 3x2 platform at 0,0 for the player to spawn at
+        for(int i = -1; i <= 1; i++)
+        {
+            PlatformsPlayer1.SetTile(new Vector3Int(i, 0, 0), Player1Platform);
+            PlatformsPlayer1.SetTile(new Vector3Int(i, -1, 0), Player1Platform);
+
+            PlatformsPlayer2.SetTile(new Vector3Int(i, 0, 0), Player2Platform);
+            PlatformsPlayer2.SetTile(new Vector3Int(i, -1, 0), Player2Platform);
+        }
 
         Debug.Log($"Generated {Settings.Width}x{Settings.Height} tiles of terrain in {(DateTime.Now - before).TotalSeconds} seconds");
     }
