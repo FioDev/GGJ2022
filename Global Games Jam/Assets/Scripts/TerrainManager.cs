@@ -3,6 +3,14 @@ using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 using System;
 
+[Serializable]
+[CreateAssetMenu]
+public class TerrainSettings : ScriptableObject
+{ 
+
+}
+
+
 
 public class TerrainManager : MonoBehaviour
 {
