@@ -45,7 +45,7 @@ public class TilemapGenerator : MonoBehaviour
 
         string outputLog = "";
 
-        foreach (TileType y in x[1])
+        foreach (TileType y in x[0])
         {
             if (y == TileType.Air)
             {
