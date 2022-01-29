@@ -9,11 +9,9 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping;
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
     [SerializeField] private BoxCollider2D groundCheck; //Ground check collider
-    [SerializeField] private BoxCollider2D ceilingCheck;  //Ceiling check collider
 
     Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
-    Transform m_CeilingCheck;   // A position marking where to check for ceilings
-  
+
     public bool m_Grounded;            // Whether or not the player is grounded.
 
     public float fallMultiplier = 3.5f;
@@ -29,7 +27,6 @@ public class CharacterController2D : MonoBehaviour
     private void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
-        m_CeilingCheck = GameObject.Find("CeilingCheck").GetComponent<Transform>();
         m_GroundCheck = GameObject.Find("GroundCheck").GetComponent<Transform>();
     }
 
@@ -68,7 +65,7 @@ public class CharacterController2D : MonoBehaviour
 
                     // Add a vertical force to the player.
                     m_Grounded = false;
-                    m_Rigidbody2D.velocity = Vector2.up * jumpVelocity;
+                    m_Rigidbody2D.velocity += Vector2.up * jumpVelocity;
 
                 }
                 

@@ -16,11 +16,11 @@ MonoBehaviour:
   Height: 1000
   NewPlatformChance: 0.3
   MinPlatformDistanceY: 2
-  MaxPlatformDistanceY: 4
+  MaxPlatformDistanceY: 5
   MinPlatformDistanceX: 1
-  MaxPlatformDistanceX: 9
-  MinPlatformWidth: 4
+  MaxPlatformDistanceX: 10
+  MinPlatformWidth: 1
   MaxPlatformWidth: 9
-  SpikeOnPlatformChance: 0.097
+  SpikeOnPlatformChance: 0.2
   SpikeOnWallChance: 0.2
   MinWallSpikeDistance: 2
