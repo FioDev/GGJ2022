@@ -14,7 +14,7 @@ public class CharacterController2D : MonoBehaviour
     Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
     Transform m_CeilingCheck;   // A position marking where to check for ceilings
   
-    private bool m_Grounded;            // Whether or not the player is grounded.
+    public bool m_Grounded;            // Whether or not the player is grounded.
 
     public float fallMultiplier = 3.5f;
     public float lowJumpMultiplier = 3f;

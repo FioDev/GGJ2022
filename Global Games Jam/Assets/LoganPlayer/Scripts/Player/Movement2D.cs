@@ -16,12 +16,13 @@ public class Movement2D : MonoBehaviour
 	private float horizontalStore;
 	private bool jump = false;
 	public bool nonStop = false;
+	public int playerNumber = 1;
 
 	// Update is called once per frame
 	void Update()
 	{
 		//Gets the players horizontal direction
-		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+		horizontalMove = Input.GetAxisRaw("Horizontal"+ playerNumber) * runSpeed;
 
 		if(horizontalMove != 0f)
 		{
@@ -45,16 +46,25 @@ public class Movement2D : MonoBehaviour
 		}
 		*/
 
+        if(controller.m_Grounded)
+        {
+            jump = false;
+            //Gets if the player should jumping
+            if (Input.GetButton("Jump"+ playerNumber))
+            {
+                jump = true;
+            }
 
+        }
 		//Gets if the player should jumping
-		if (Input.GetButtonDown("Jump"))
-		{
-			jump = true;
-		}
-		else if (Input.GetButtonUp("Jump"))
-		{
-			jump = false;
-		}
+		// if (Input.GetButtonDown("Jump"))
+		// {
+		// 	jump = true;
+		// }
+		// else
+		// {
+		// 	jump = false;
+		// }
 
 		/*
 		if(Input.GetButtonDown("Cancel"))

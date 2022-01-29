@@ -4,7 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Collectable
+  - Player2
+  - Player1
   layers:
   - Default
   - TransparentFX
@@ -12,10 +13,10 @@ TagManager:
   - 
   - Water
   - UI
-  - WallPlayer1
-  - WallPlayer2
-  - GroundPlayer1
-  - GroundPlayer2
+  - BackgroundPlayer1
+  - BackgroundPlayer2
+  - SolidBlockPlayer1
+  - SolidBlockPlayer2
   - 
   - 
   - 
@@ -34,20 +35,17 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - Collectable
-  - Player
+  - DeathZone1
+  - DeathZone2
+  - Player1
+  - Player2
   m_SortingLayers:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Wall
-    uniqueID: 1728181453
-    locked: 0
-  - name: Ground
+  - name: Tilemap
     uniqueID: 2800617277
     locked: 0
-  - name: Camera
-    uniqueID: 275461751
+  - name: Player
+    uniqueID: 1167878145
     locked: 0
