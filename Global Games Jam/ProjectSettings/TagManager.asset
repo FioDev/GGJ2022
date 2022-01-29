@@ -35,8 +35,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - Player
+  - Player1
+  - Player2
   m_SortingLayers:
   - name: Default
     uniqueID: 0
