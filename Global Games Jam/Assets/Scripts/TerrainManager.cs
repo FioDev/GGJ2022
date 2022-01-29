@@ -20,10 +20,10 @@ public class TerrainManager : MonoBehaviour
     private void Start()
     {
         UnityEngine.Random.InitState(0);
-        GenerateAllTerrain(10, 1000, new Vector2Int(2, 5), new Vector2Int(2, 5));
+        GenerateAllTerrain(10, 1000, new Vector2Int(2, 5), new Vector2Int(1, 3), new Vector2Int(2, 5));
     }
 
-    protected void GenerateAllTerrain(uint width, uint height, Vector2Int minMaxYDistanceBetweenPlatforms, Vector2Int minMaxPlatformWidth)
+    protected void GenerateAllTerrain(uint width, uint height, Vector2Int minMaxYPlatformDistance, Vector2Int minMaxXPlatformDistance, Vector2Int minMaxPlatformWidth)
     {
         DateTime before = DateTime.Now;
 
@@ -40,13 +40,12 @@ public class TerrainManager : MonoBehaviour
         List<TileBase> blackWalls = new List<TileBase>();
         List<TileBase> whiteWalls = new List<TileBase>();
 
+        int xMin = -(int)width / 2;
+        int xMax = (int)width / 2 - 1;
+
         // Offset the positions so that the map is centered at 0, 0
         for (int y = -(int)height / 2; y < height / 2; y++)
-        {
-            int xMin = -(int)width / 2;
-            int xMax = (int)width / 2 - 1;
-
-            // Borders
+        {             // Borders
             borders.Add(new Vector3Int(xMin, y, 0));
             borders.Add(new Vector3Int(xMax, y, 0));
             blackBorders.Add(BlackTile);
@@ -73,25 +72,27 @@ public class TerrainManager : MonoBehaviour
         List<Vector3Int> platformPositions = new List<Vector3Int>();
         List<TileBase> platformTiles = new List<TileBase>();
 
-        int GetRandomYDistanceToNextPlatform()
+        int GetRandomBetweenMinMax(Vector2Int minMax)
         {
-            return (int)(UnityEngine.Random.value * (minMaxYDistanceBetweenPlatforms.y - minMaxYDistanceBetweenPlatforms.x) + minMaxYDistanceBetweenPlatforms.x);
+            return (int)(UnityEngine.Random.value * (minMax.y - minMax.x) + minMax.x);
         }
 
-        int GetRandomPlatformWidth()
+        for (int y = -(int)height / 2; y < height / 2; y += GetRandomBetweenMinMax(minMaxYPlatformDistance))
         {
-            return (int)(UnityEngine.Random.value * (minMaxPlatformWidth.y - minMaxPlatformWidth.x) + minMaxPlatformWidth.x);
-        }
+            int sign = (int)(UnityEngine.Random.value * 2) - 1;
+            int x = 0 + sign * GetRandomBetweenMinMax(minMaxXPlatformDistance);
 
-        for (int y = -(int)height / 2; y < height / 2; y += GetRandomYDistanceToNextPlatform())
-        {
-            int x = 0;
-            int platformWidth = GetRandomPlatformWidth();
+            int platformWidth = GetRandomBetweenMinMax(minMaxPlatformWidth);
 
-            for (int i = -platformWidth / 2; i < platformWidth / 2; i++)
+            for (int i = 0; i < platformWidth; i++)
             {
-                platformPositions.Add(new Vector3Int(x + i, y, 0));
-                platformTiles.Add(SmallPlatform);
+                int newX = x + i - (platformWidth / 2);
+
+                if (newX > xMin && newX < xMax)
+                {
+                    platformPositions.Add(new Vector3Int(newX, y, 0));
+                    platformTiles.Add(SmallPlatform);
+                }
             }
         }
 
@@ -101,96 +102,12 @@ public class TerrainManager : MonoBehaviour
         Debug.Log($"Generated {width}x{height} tiles of terrain in {(DateTime.Now - before).TotalSeconds} seconds");
     }
 
-
-
-
-
-    protected class Tiles
+    protected void SetTiles(List<Vector3Int> blackGroundPositions, List<Vector3Int> whiteGroundPositions,
+        List<Vector3Int> blackWallPositions, List<Vector3Int> whiteWallPositions, 
+        List<Vector3Int> platformPositions, List<TileBase> platformTiles )
     {
-        public List<Vector3Int> Positions = new List<Vector3Int>();
-        public List<TileBase> TilesTypes = new List<TileBase>();
-    }
 
-    /*    protected void GetAllTilesFromTilemap(in Tilemap tilemap, ref Tiles player1Walls, ref Tiles player2Walls, ref Tiles player1Ground, ref Tiles player2Ground)
-        {
-            // Compress the bounds first to reduce unnecessary calls
-            tilemap.CompressBounds();
-
-            // Get an iterator for the bounds of the tilemap 
-            BoundsInt.PositionEnumerator p = tilemap.cellBounds.allPositionsWithin.GetEnumerator();
-            while (p.MoveNext())
-            {
-                Vector3Int current = p.Current;
-                // Get the tile
-                TileBase t = tilemap.GetTile(current);
-                if (t != null)
-                {
-                    if(t == Player1Ground)
-                    {
-
-                    }
-                    else if(t == Player2Ground)
-                    {
-
-                    }
-                    else if(t == Player1Wall)
-                    {
-
-                    }
-                    else if (t == Player2Wall)
-                    {
-
-                    }
-
-
-                }
-            }
-        }*/
-
-
-    public enum TileType
-    {
-        Air,
-        Ground,
-        Obstacle,
-        Collectable
     }
 
 
-    /*    public void GenerateTerrainFromNoise(TileType[,] noisePlayer1)
-        {
-            int width = noisePlayer1.GetLength(0), height = noisePlayer1.GetLength(1);
-
-            List<Vector3Int> tilePositionsPlayer1 = new List<Vector3Int>();
-            List<Vector3Int> tilePositionsPlayer2 = new List<Vector3Int>();
-            List<TileBase> groundLayerTileTypesPlayer1 = new List<TileBase>();
-            List<TileBase> groundLayerTileTypesPlayer2 = new List<TileBase>();
-
-            for (int y = 0; y < height; y++)
-            {
-                for (int x = 0; x < width; x++)
-                {
-                    Vector3Int position = new Vector3Int(x, y, 0);
-
-                    switch (noisePlayer1[x, y])
-                    {
-                        case TileType.Air:
-                            tilePositionsPlayer2.Add(position);
-                            groundLayerTileTypesPlayer2.Add(Player2Ground);
-                            break;
-                        case TileType.Ground:
-                            tilePositionsPlayer1.Add(position);
-                            groundLayerTileTypesPlayer1.Add(Player1Ground);
-                            break;
-                    }
-                }
-            }
-
-
-
-            GroundPlayer1.SetTiles(tilePositionsPlayer1.ToArray(), groundLayerTileTypesPlayer1.ToArray());
-            GroundPlayer2.SetTiles(tilePositionsPlayer2.ToArray(), groundLayerTileTypesPlayer2.ToArray());
-
-
-        }*/
 }
