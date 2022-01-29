@@ -1333,11 +1333,15 @@ MonoBehaviour:
   Player1Tile: {fileID: 11400000, guid: 24b74fe09c31e3b4c8ad0af995a1a966, type: 2}
   Player1BackgroundTile: {fileID: 11400000, guid: 3ff4fd736c92adc41935cd6ba5669dfa, type: 2}
   Player1Platform: {fileID: 11400000, guid: 99e8a3c56971ba743ae4c50b0010df3a, type: 2}
-  Player1Hazards: {fileID: 11400000, guid: b6f2a367953ff9e4db7dfaf36cf1a67c, type: 2}
+  Player1HazardsUp: {fileID: 11400000, guid: b6f2a367953ff9e4db7dfaf36cf1a67c, type: 2}
+  Player1HazardsLeft: {fileID: 11400000, guid: 7e73b4b5d77c70a41a5f9ee7d37c1d7f, type: 2}
+  Player1HazardsRight: {fileID: 11400000, guid: 264d2e20117b1e244b827c8bd1036811, type: 2}
   Player2Tile: {fileID: 11400000, guid: 2a98f9e6775ca094b9865904aac9b961, type: 2}
   Player2BackgroundTile: {fileID: 11400000, guid: 5dc9e624bb78e2b4b95287fff0f9e1c9, type: 2}
   Player2Platform: {fileID: 11400000, guid: 3e9af1a58a3571641846c808493acc81, type: 2}
-  Player2Hazards: {fileID: 11400000, guid: 634f5ec8b71245343b2908bd27d6d060, type: 2}
+  Player2HazardsUp: {fileID: 11400000, guid: 634f5ec8b71245343b2908bd27d6d060, type: 2}
+  Player2HazardsLeft: {fileID: 11400000, guid: 25994afd196b7cc4491eafb20725db3d, type: 2}
+  Player2HazardsRight: {fileID: 11400000, guid: b80a057da1a767a46aee13ee53e3c9df, type: 2}
   Settings: {fileID: 11400000, guid: fead42de5194fcf4390a0766e4c9cf5e, type: 2}
 --- !u!114 &1076644193
 MonoBehaviour:
@@ -1769,7 +1773,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 309615977949096098, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 309615977949096098, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: m_SortingLayerID

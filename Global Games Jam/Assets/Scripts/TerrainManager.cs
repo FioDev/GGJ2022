@@ -24,13 +24,19 @@ public class TerrainManager : MonoBehaviour
     public TileBase Player1Tile;
     public TileBase Player1BackgroundTile;
     public TileBase Player1Platform;
-    public TileBase Player1Hazards;
+    public TileBase Player1HazardsUp;
+    public TileBase Player1HazardsLeft;
+    public TileBase Player1HazardsRight;
+
 
     [Space]
     public TileBase Player2Tile;
     public TileBase Player2BackgroundTile;
     public TileBase Player2Platform;
-    public TileBase Player2Hazards;
+    public TileBase Player2HazardsUp;
+    public TileBase Player2HazardsLeft;
+    public TileBase Player2HazardsRight;
+
 
     private Vector3Int lastPlatformPosition;
     private int lastWallSpikesY;
@@ -179,8 +185,8 @@ public class TerrainManager : MonoBehaviour
                     if (newX > xMin && newX < xMax)
                     {
                         hazardPositions.Add(new Vector3Int(newX, y + 1, 0));
-                        p1hazards.Add(Player1Hazards);
-                        p2hazards.Add(Player2Hazards);
+                        p1hazards.Add(Player1HazardsUp);
+                        p2hazards.Add(Player2HazardsUp);
                     }
                 }
             }
@@ -195,13 +201,29 @@ public class TerrainManager : MonoBehaviour
 
             if (y - numberOfSpikes / 2 - lastWallSpikesY >= Settings.MinWallSpikeDistance)
             {
+                TileBase p1Rotated;
+                TileBase p2Rotated;
+
+                // Left
+                if (xPos == xMin + 1)
+                {
+                    p1Rotated = Player1HazardsLeft;
+                    p2Rotated = Player2HazardsLeft;
+                }
+                // Right
+                else
+                {
+                    p1Rotated = Player1HazardsRight;
+                    p2Rotated = Player2HazardsRight;
+                }
+
                 for (int i = 0; i < numberOfSpikes; i++)
                 {
                     int newY = y - (numberOfSpikes / 2) + i;
 
                     hazardPositions.Add(new Vector3Int(xPos, newY, 0));
-                    p1hazards.Add(Player1Hazards);
-                    p2hazards.Add(Player2Hazards);
+                    p1hazards.Add(p1Rotated);
+                    p2hazards.Add(p2Rotated);
                 }
 
                 lastWallSpikesY = y;

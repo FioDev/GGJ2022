@@ -16,7 +16,7 @@ MonoBehaviour:
   Height: 1000
   NewPlatformChance: 0.3
   MinPlatformDistanceY: 2
-  MaxPlatformDistanceY: 5
+  MaxPlatformDistanceY: 4
   MinPlatformDistanceX: 1
   MaxPlatformDistanceX: 10
   MinPlatformWidth: 3
