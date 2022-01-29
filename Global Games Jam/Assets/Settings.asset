@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Width: 19
   Height: 1000
+  NewPlatformChance: 0.3
   MinPlatformDistanceY: 2
   MaxPlatformDistanceY: 5
   MinPlatformDistanceX: 1
   MaxPlatformDistanceX: 10
   MinPlatformWidth: 1
   MaxPlatformWidth: 9
+  SpikeOnPlatformChance: 0.2
+  SpikeOnWallChance: 0.2
+  MinWallSpikeDistance: 2
