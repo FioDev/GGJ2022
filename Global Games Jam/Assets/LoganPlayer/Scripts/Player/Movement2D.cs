@@ -15,8 +15,6 @@ public class Movement2D : MonoBehaviour
 	private float horizontalMove = 0f;
 	private float horizontalStore;
 	private bool jump = false;
-	private bool crouch = false;
-	private bool fire = false;
 	public bool nonStop = false;
 
 	// Update is called once per frame
