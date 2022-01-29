@@ -148,12 +148,12 @@ public class TerrainManager : MonoBehaviour
             int sign = r.Next(0, 2) == 0 ? -1 : 1;
 
             // Platform pos
-            int x = 0 + sign * r.Next(Settings.MinPlatformDistanceX, Settings.MaxPlatformDistanceX);
+            int x = lastPlatformPosition.x + sign * r.Next(Settings.MinPlatformDistanceX, Settings.MaxPlatformDistanceX);
             int platformWidth = r.Next(Settings.MinPlatformWidth, Settings.MaxPlatformWidth);
 
             for (int i = 0; i < platformWidth; i++)
             {
-                int newX = x + i - (platformWidth / 2);
+                int newX = x - (platformWidth / 2) + i;
 
                 if (newX > xMin && newX < xMax)
                 {
@@ -171,9 +171,9 @@ public class TerrainManager : MonoBehaviour
             if (r.NextDouble() < Settings.SpikeOnPlatformChance)
             {
                 // Add random number of spikes on top
-                for (int i = r.Next(0, platformWidth + 1); i < platformWidth; i++)
+                for (int i = r.Next(1, platformWidth); i < platformWidth - 1; i++)
                 {
-                    int newX = x + i - (platformWidth / 2);
+                    int newX = x - (platformWidth / 2) + i;
 
                     if (newX > xMin && newX < xMax)
                     {
@@ -187,6 +187,12 @@ public class TerrainManager : MonoBehaviour
         }
 
         // Chance to do spikes on the wall
+        if (r.NextDouble() < Settings.SpikeOnWallChance)
+        {
+            // Get left or right
+            int xPos = r.Next(0, 2) == 0 ? xMin + 1 : xMax - 1;
+
+        }
 
 #endif
 
