@@ -58,9 +58,9 @@ public class TerrainManager : MonoBehaviour
         GenerateAllTerrain();
     }
 
-    protected void GenerateTerrainForHeight(int y)
+    protected void GenerateTerrainForHeight(int y, int seed)
     {
-        System.Random r = new System.Random(y);
+        System.Random r = new System.Random(seed * y);
 
         // Solid blocks for the edges
         List<Vector3Int> borders = new List<Vector3Int>();
@@ -247,12 +247,14 @@ public class TerrainManager : MonoBehaviour
     {
         DateTime before = DateTime.Now;
 
+        int seed = Environment.TickCount;
+
         lastPlatformPosition = new Vector3Int(0, 0, 0);
 
         // Offset the positions so that the map is centered at 0, 0
         for (int y = -Settings.Height / 2; y < Settings.Height / 2; y++)
         {
-            GenerateTerrainForHeight(y);
+            GenerateTerrainForHeight(y, seed);
         }
 
         // Ensure there is a 3x2 platform at 0,0 for the player to spawn at

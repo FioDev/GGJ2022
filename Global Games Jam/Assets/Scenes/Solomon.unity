@@ -423,6 +423,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 195708624700099933, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: a928c27741b5a2c44b5cf38db5a0819e, type: 2}
     - target: {fileID: 309615977153791943, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: m_Layer
       value: 31
@@ -2279,6 +2283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BloodSplatter: {fileID: 3043471895594458797, guid: 6766aab33a5ef9d47a89c31e6263a342, type: 3}
   EffectsLayerForThisPlayer: Effects2
+  TimeSurvivedSeconds: 0
 --- !u!95 &1880581646 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 195708624700099933, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
@@ -2521,3 +2526,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BloodSplatter: {fileID: 3043471895594458797, guid: 6766aab33a5ef9d47a89c31e6263a342, type: 3}
   EffectsLayerForThisPlayer: Effects1
+  TimeSurvivedSeconds: 0
