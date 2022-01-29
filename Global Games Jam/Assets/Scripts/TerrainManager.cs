@@ -3,43 +3,48 @@ using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 using System;
 
-[Serializable]
-[CreateAssetMenu]
-public class TerrainSettings : ScriptableObject
-{ 
-
-}
-
-
 
 public class TerrainManager : MonoBehaviour
 {
     [Header("Player 1")]
-    public Tilemap GroundPlayer1, WallPlayer1;
+    public Tilemap SolidBlocksPlayer1;
+    public Tilemap PlatformsPlayer1;
+    public Tilemap HazardsPlayer1;
+    public Tilemap BackgroundPlayer1;
 
     [Header("Player 2")]
-    public Tilemap GroundPlayer2, WallPlayer2;
+    public Tilemap SolidBlocksPlayer2;
+    public Tilemap PlatformsPlayer2;
+    public Tilemap HazardsPlayer2;
+    public Tilemap BackgroundPlayer2;
 
     [Header("Tiles")]
-    public TileBase GreyTile, BlackTile, WhiteTile;
-    [Space]
-    public TileBase SmallPlatform;
+    public TileBase GreyTile;
+    public TileBase BlackTile;
+    public TileBase WhiteTile;
+    public TileBase PlatformPlayer1;
+
+    [Header("Settings")]
+    public TerrainSettings Settings;
 
     private void Start()
     {
         UnityEngine.Random.InitState(0);
-        GenerateAllTerrain(19, 1000, new Vector2Int(2, 5), new Vector2Int(1, 3), new Vector2Int(2, 5));
+        GenerateAllTerrain();
     }
 
-
-    protected void GenerateAllTerrain(uint width, uint height, Vector2Int minMaxYPlatformDistance, Vector2Int minMaxXPlatformDistance, Vector2Int minMaxPlatformWidth)
+    protected void GenerateAllTerrain()
     {
         DateTime before = DateTime.Now;
 
-        GroundPlayer1.ClearAllTiles();
-        GroundPlayer2.ClearAllTiles();
-        WallPlayer1.ClearAllTiles();
-        WallPlayer2.ClearAllTiles();
+        SolidBlocksPlayer1.ClearAllTiles();
+        SolidBlocksPlayer2.ClearAllTiles();
+        BackgroundPlayer1.ClearAllTiles();
+        BackgroundPlayer2.ClearAllTiles();
+        HazardsPlayer1.ClearAllTiles();
+        HazardsPlayer2.ClearAllTiles();
+        BackgroundPlayer1.ClearAllTiles();
+        BackgroundPlayer2.ClearAllTiles();
 
         List<Vector3Int> borders = new List<Vector3Int>();
         List<TileBase> blackBorders = new List<TileBase>();
@@ -49,12 +54,12 @@ public class TerrainManager : MonoBehaviour
         List<TileBase> blackWalls = new List<TileBase>();
         List<TileBase> whiteWalls = new List<TileBase>();
 
-        int xMin = -(int)width / 2;
-        int xMax = (int)width / 2 - 1;
+        int xMin = -Settings.Width / 2;
+        int xMax = Settings.Width / 2 - 1;
 
         // Offset the positions so that the map is centered at 0, 0
-        for (int y = -(int)height / 2; y < height / 2; y++)
-        {             
+        for (int y = -Settings.Height / 2; y < Settings.Height / 2; y++)
+        {
             // Borders
             borders.Add(new Vector3Int(xMin, y, 0));
             borders.Add(new Vector3Int(xMax, y, 0));
@@ -73,26 +78,26 @@ public class TerrainManager : MonoBehaviour
         }
 
         // Set border tiles
-        GroundPlayer1.SetTiles(borders.ToArray(), blackBorders.ToArray());
-        GroundPlayer2.SetTiles(borders.ToArray(), whiteBorders.ToArray());
-        WallPlayer1.SetTiles(background.ToArray(), whiteWalls.ToArray());
-        WallPlayer2.SetTiles(background.ToArray(), blackWalls.ToArray());
+        SolidBlocksPlayer1.SetTiles(borders.ToArray(), blackBorders.ToArray());
+        SolidBlocksPlayer2.SetTiles(borders.ToArray(), whiteBorders.ToArray());
+        BackgroundPlayer1.SetTiles(background.ToArray(), whiteWalls.ToArray());
+        BackgroundPlayer2.SetTiles(background.ToArray(), blackWalls.ToArray());
 
 
         List<Vector3Int> platformPositions = new List<Vector3Int>();
         List<TileBase> platformTiles = new List<TileBase>();
 
-        int GetRandomBetweenMinMax(Vector2Int minMax)
+        int GetRandomBetweenMinMax(int min, int max)
         {
-            return (int)(UnityEngine.Random.value * (minMax.y - minMax.x) + minMax.x);
+            return (int)(UnityEngine.Random.value * (max - min) + min);
         }
 
-        for (int y = -(int)height / 2; y < height / 2; y += GetRandomBetweenMinMax(minMaxYPlatformDistance))
+        for (int y = -Settings.Height / 2; y < Settings.Height / 2; y += GetRandomBetweenMinMax(Settings.MinPlatformDistanceY, Settings.MaxPlatformDistanceY))
         {
             int sign = (int)(UnityEngine.Random.value * 2) - 1;
-            int x = 0 + sign * GetRandomBetweenMinMax(minMaxXPlatformDistance);
+            int x = 0 + sign * GetRandomBetweenMinMax(Settings.MinPlatformDistanceX, Settings.MaxPlatformDistanceX);
 
-            int platformWidth = GetRandomBetweenMinMax(minMaxPlatformWidth);
+            int platformWidth = GetRandomBetweenMinMax(Settings.MinPlatformWidth, Settings.MaxPlatformWidth);
 
             for (int i = 0; i < platformWidth; i++)
             {
@@ -101,15 +106,15 @@ public class TerrainManager : MonoBehaviour
                 if (newX > xMin && newX < xMax)
                 {
                     platformPositions.Add(new Vector3Int(newX, y, 0));
-                    platformTiles.Add(SmallPlatform);
+                    platformTiles.Add(PlatformPlayer1);
                 }
             }
         }
 
-        GroundPlayer1.SetTiles(platformPositions.ToArray(), platformTiles.ToArray());
-        GroundPlayer2.SetTiles(platformPositions.ToArray(), platformTiles.ToArray());
+        PlatformsPlayer1.SetTiles(platformPositions.ToArray(), platformTiles.ToArray());
+        PlatformsPlayer2.SetTiles(platformPositions.ToArray(), platformTiles.ToArray());
 
-        Debug.Log($"Generated {width}x{height} tiles of terrain in {(DateTime.Now - before).TotalSeconds} seconds");
+        Debug.Log($"Generated {Settings.Width}x{Settings.Height} tiles of terrain in {(DateTime.Now - before).TotalSeconds} seconds");
     }
 
 
