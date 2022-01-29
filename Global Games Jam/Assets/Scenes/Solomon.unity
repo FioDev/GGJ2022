@@ -1050,10 +1050,12 @@ MonoBehaviour:
   PlatformsPlayer2: {fileID: 209957396}
   HazardsPlayer2: {fileID: 26567893}
   BackgroundPlayer2: {fileID: 2014535942}
-  GreyTile: {fileID: 11400000, guid: fd2037674fdf23a4990f24496deaa0df, type: 2}
-  BlackTile: {fileID: 11400000, guid: 24b74fe09c31e3b4c8ad0af995a1a966, type: 2}
-  WhiteTile: {fileID: 11400000, guid: 2a98f9e6775ca094b9865904aac9b961, type: 2}
-  PlatformPlayer1: {fileID: 11400000, guid: 99e8a3c56971ba743ae4c50b0010df3a, type: 2}
+  Player1Tile: {fileID: 11400000, guid: 24b74fe09c31e3b4c8ad0af995a1a966, type: 2}
+  Player1BackgroundTile: {fileID: 11400000, guid: 3ff4fd736c92adc41935cd6ba5669dfa, type: 2}
+  Player1Platform: {fileID: 11400000, guid: 99e8a3c56971ba743ae4c50b0010df3a, type: 2}
+  Player2Tile: {fileID: 11400000, guid: 2a98f9e6775ca094b9865904aac9b961, type: 2}
+  Player2BackgroundTile: {fileID: 11400000, guid: 5dc9e624bb78e2b4b95287fff0f9e1c9, type: 2}
+  Player2Platform: {fileID: 11400000, guid: 99e8a3c56971ba743ae4c50b0010df3a, type: 2}
   Settings: {fileID: 11400000, guid: fead42de5194fcf4390a0766e4c9cf5e, type: 2}
 --- !u!114 &1076644193
 MonoBehaviour:

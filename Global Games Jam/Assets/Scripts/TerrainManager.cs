@@ -1,5 +1,5 @@
 // Enable/disable fio gen
-#define DO_FIO_GEN
+// #define DO_FIO_GEN
 
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -21,10 +21,14 @@ public class TerrainManager : MonoBehaviour
     public Tilemap BackgroundPlayer2;
 
     [Header("Tiles")]
-    public TileBase GreyTile;
-    public TileBase BlackTile;
-    public TileBase WhiteTile;
-    public TileBase PlatformPlayer1;
+    public TileBase Player1Tile;
+    public TileBase Player1BackgroundTile;
+    public TileBase Player1Platform;
+
+    public TileBase Player2Tile;
+    public TileBase Player2BackgroundTile;
+    public TileBase Player2Platform;
+
 
     [Header("Settings")]
     public TerrainSettings Settings;
@@ -49,12 +53,12 @@ public class TerrainManager : MonoBehaviour
         BackgroundPlayer2.ClearAllTiles();
 
         List<Vector3Int> borders = new List<Vector3Int>();
-        List<TileBase> blackBorders = new List<TileBase>();
-        List<TileBase> whiteBorders = new List<TileBase>();
+        List<TileBase> p1Borders = new List<TileBase>();
+        List<TileBase> p2Borders = new List<TileBase>();
 
         List<Vector3Int> background = new List<Vector3Int>();
-        List<TileBase> blackWalls = new List<TileBase>();
-        List<TileBase> whiteWalls = new List<TileBase>();
+        List<TileBase> p1Walls = new List<TileBase>();
+        List<TileBase> p2Walls = new List<TileBase>();
 
         int xMin = -Settings.Width / 2;
         int xMax = Settings.Width / 2 - 1;
@@ -65,29 +69,31 @@ public class TerrainManager : MonoBehaviour
             // Borders
             borders.Add(new Vector3Int(xMin, y, 0));
             borders.Add(new Vector3Int(xMax, y, 0));
-            blackBorders.Add(BlackTile);
-            blackBorders.Add(BlackTile);
-            whiteBorders.Add(WhiteTile);
-            whiteBorders.Add(WhiteTile);
+            p1Borders.Add(Player1Tile);
+            p1Borders.Add(Player1Tile);
+            p2Borders.Add(Player2Tile);
+            p2Borders.Add(Player2Tile);
 
             // Background
             for (int i = xMin; i <= xMax; i++)
             {
                 background.Add(new Vector3Int(i, y, 0));
-                blackWalls.Add(BlackTile);
-                whiteWalls.Add(WhiteTile);
+                p1Walls.Add(Player1BackgroundTile);
+                p2Walls.Add(Player2BackgroundTile);
             }
         }
 
         // Set border tiles
-        SolidBlocksPlayer1.SetTiles(borders.ToArray(), blackBorders.ToArray());
-        SolidBlocksPlayer2.SetTiles(borders.ToArray(), whiteBorders.ToArray());
-        BackgroundPlayer1.SetTiles(background.ToArray(), whiteWalls.ToArray());
-        BackgroundPlayer2.SetTiles(background.ToArray(), blackWalls.ToArray());
+        SolidBlocksPlayer1.SetTiles(borders.ToArray(), p1Borders.ToArray());
+        SolidBlocksPlayer2.SetTiles(borders.ToArray(), p2Borders.ToArray());
+        BackgroundPlayer1.SetTiles(background.ToArray(), p1Walls.ToArray());
+        BackgroundPlayer2.SetTiles(background.ToArray(), p2Walls.ToArray());
 
 
         List<Vector3Int> platformPositions = new List<Vector3Int>();
-        List<TileBase> platformTiles = new List<TileBase>();
+        List<TileBase> p1PlatformTiles = new List<TileBase>();
+        List<TileBase> p2PlatformTiles = new List<TileBase>();
+
 
 
 
@@ -150,14 +156,15 @@ public class TerrainManager : MonoBehaviour
                 if (newX > xMin && newX < xMax)
                 {
                     platformPositions.Add(new Vector3Int(newX, y, 0));
-                    platformTiles.Add(PlatformPlayer1);
+                    p1PlatformTiles.Add(Player1Platform);
+                    p2PlatformTiles.Add(Player2Platform);
                 }
             }
         }
 #endif
 
-        PlatformsPlayer1.SetTiles(platformPositions.ToArray(), platformTiles.ToArray());
-        PlatformsPlayer2.SetTiles(platformPositions.ToArray(), platformTiles.ToArray());
+        PlatformsPlayer1.SetTiles(platformPositions.ToArray(), p1PlatformTiles.ToArray());
+        PlatformsPlayer2.SetTiles(platformPositions.ToArray(), p2PlatformTiles.ToArray());
 
         Debug.Log($"Generated {Settings.Width}x{Settings.Height} tiles of terrain in {(DateTime.Now - before).TotalSeconds} seconds");
     }
