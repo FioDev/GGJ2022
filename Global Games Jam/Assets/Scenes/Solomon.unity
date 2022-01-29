@@ -392,8 +392,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1984971271, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1880581646}
+    - target: {fileID: 1984971271, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: runSpeed
-      value: 45
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1984971271, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: playerNumber
@@ -405,7 +409,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1984971272, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: fallMultiplier
-      value: 5
+      value: 2.8
       objectReference: {fileID: 0}
     - target: {fileID: 1984971272, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: m_MovementSmoothing
@@ -414,6 +418,10 @@ PrefabInstance:
     - target: {fileID: 1984971272, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: m_WhatIsGround.m_Bits
       value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 195708624700099933, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 309615977153791943, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: m_Layer
@@ -505,7 +513,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 309615977949096111, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 309615977949096111, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: m_TagString
@@ -2107,6 +2115,14 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1984971272, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+      propertyPath: m_MovementSmoothing
+      value: 0.075
+      objectReference: {fileID: 0}
+    - target: {fileID: 1984971272, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+      propertyPath: m_WhatIsGround.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 1984971272, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -2244,6 +2260,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+--- !u!95 &1880581646 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 195708624700099933, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+  m_PrefabInstance: {fileID: 95206012}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2014535939
 GameObject:
   m_ObjectHideFlags: 0
