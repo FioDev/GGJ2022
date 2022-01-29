@@ -835,14 +835,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e2a7379ee4c30c44a2de39e07bcd5b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpVelocity: 6
-  m_MovementSmoothing: 0.3
+  jumpVelocity: 4.5
+  m_MovementSmoothing: 0.2
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 1
   groundCheck: {fileID: 1984971270}
   ceilingCheck: {fileID: 1984971269}
-  fallMultiplier: 3.5
+  m_Grounded: 0
+  fallMultiplier: 4
   lowJumpMultiplier: 3
   ID: 0

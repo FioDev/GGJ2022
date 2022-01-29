@@ -39,16 +39,25 @@ public class Movement2D : MonoBehaviour
 		}
 		*/
 
+        if(controller.m_Grounded)
+        {
+            jump = false;
+            //Gets if the player should jumping
+            if (Input.GetButton("Jump"))
+            {
+                jump = true;
+            }
 
+        }
 		//Gets if the player should jumping
-		if (Input.GetButtonDown("Jump"))
-		{
-			jump = true;
-		}
-		else if (Input.GetButtonUp("Jump"))
-		{
-			jump = false;
-		}
+		// if (Input.GetButtonDown("Jump"))
+		// {
+		// 	jump = true;
+		// }
+		// else
+		// {
+		// 	jump = false;
+		// }
 
 		/*
 		if(Input.GetButtonDown("Cancel"))
