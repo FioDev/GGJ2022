@@ -702,7 +702,7 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.51
+    x: 0.5
     y: 0
     width: 1
     height: 1
@@ -839,7 +839,7 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 0.49
+    width: 0.5
     height: 1
   near clip plane: 0
   far clip plane: 1000
@@ -1003,7 +1003,7 @@ TilemapCollider2D:
   m_GameObject: {fileID: 939406361}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 50486660cf6fa154dbb0d075ddde6d05, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -1613,7 +1613,7 @@ TilemapCollider2D:
   m_GameObject: {fileID: 1486741002}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 50486660cf6fa154dbb0d075ddde6d05, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
