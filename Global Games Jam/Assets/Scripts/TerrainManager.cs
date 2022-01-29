@@ -23,6 +23,7 @@ public class TerrainManager : MonoBehaviour
         GenerateAllTerrain(10, 1000, new Vector2Int(2, 5), new Vector2Int(1, 3), new Vector2Int(2, 5));
     }
 
+
     protected void GenerateAllTerrain(uint width, uint height, Vector2Int minMaxYPlatformDistance, Vector2Int minMaxXPlatformDistance, Vector2Int minMaxPlatformWidth)
     {
         DateTime before = DateTime.Now;
@@ -45,7 +46,8 @@ public class TerrainManager : MonoBehaviour
 
         // Offset the positions so that the map is centered at 0, 0
         for (int y = -(int)height / 2; y < height / 2; y++)
-        {             // Borders
+        {             
+            // Borders
             borders.Add(new Vector3Int(xMin, y, 0));
             borders.Add(new Vector3Int(xMax, y, 0));
             blackBorders.Add(BlackTile);
@@ -100,13 +102,6 @@ public class TerrainManager : MonoBehaviour
         GroundPlayer2.SetTiles(platformPositions.ToArray(), platformTiles.ToArray());
 
         Debug.Log($"Generated {width}x{height} tiles of terrain in {(DateTime.Now - before).TotalSeconds} seconds");
-    }
-
-    protected void SetTiles(List<Vector3Int> blackGroundPositions, List<Vector3Int> whiteGroundPositions,
-        List<Vector3Int> blackWallPositions, List<Vector3Int> whiteWallPositions, 
-        List<Vector3Int> platformPositions, List<TileBase> platformTiles )
-    {
-
     }
 
 
