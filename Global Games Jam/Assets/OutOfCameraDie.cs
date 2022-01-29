@@ -25,6 +25,7 @@ public class OutOfCameraDie : MonoBehaviour
     void OnTriggerExit2D(Collider2D col)
     {
         Debug.Log(col.tag + "Died");
+        Destroy(col.gameObject);
     }
 
 }
