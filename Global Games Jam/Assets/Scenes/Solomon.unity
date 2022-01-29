@@ -621,6 +621,7 @@ MonoBehaviour:
   GreyTile: {fileID: 11400000, guid: fd2037674fdf23a4990f24496deaa0df, type: 2}
   BlackTile: {fileID: 11400000, guid: 24b74fe09c31e3b4c8ad0af995a1a966, type: 2}
   WhiteTile: {fileID: 11400000, guid: 2a98f9e6775ca094b9865904aac9b961, type: 2}
+  SmallPlatform: {fileID: 11400000, guid: fd2037674fdf23a4990f24496deaa0df, type: 2}
 --- !u!1 &1306947683
 GameObject:
   m_ObjectHideFlags: 0

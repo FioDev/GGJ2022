@@ -14,14 +14,16 @@ public class TerrainManager : MonoBehaviour
 
     [Header("Tiles")]
     public TileBase GreyTile, BlackTile, WhiteTile;
-
+    [Space]
+    public TileBase SmallPlatform;
 
     private void Start()
     {
-        GenerateAllTerrain(10, 1000);
+        UnityEngine.Random.InitState(0);
+        GenerateAllTerrain(10, 1000, new Vector2Int(2, 5), new Vector2Int(2, 5));
     }
 
-    protected void GenerateAllTerrain(int width, int height)
+    protected void GenerateAllTerrain(uint width, uint height, Vector2Int minMaxYDistanceBetweenPlatforms, Vector2Int minMaxPlatformWidth)
     {
         DateTime before = DateTime.Now;
 
@@ -39,10 +41,10 @@ public class TerrainManager : MonoBehaviour
         List<TileBase> whiteWalls = new List<TileBase>();
 
         // Offset the positions so that the map is centered at 0, 0
-        for (int y = -height / 2; y < height / 2; y++)
+        for (int y = -(int)height / 2; y < height / 2; y++)
         {
-            int xMin = -width / 2;
-            int xMax = width / 2 - 1;
+            int xMin = -(int)width / 2;
+            int xMax = (int)width / 2 - 1;
 
             // Borders
             borders.Add(new Vector3Int(xMin, y, 0));
@@ -61,14 +63,45 @@ public class TerrainManager : MonoBehaviour
             }
         }
 
+        // Set border tiles
         GroundPlayer1.SetTiles(borders.ToArray(), blackBorders.ToArray());
         GroundPlayer2.SetTiles(borders.ToArray(), whiteBorders.ToArray());
-
         WallPlayer1.SetTiles(background.ToArray(), whiteWalls.ToArray());
         WallPlayer2.SetTiles(background.ToArray(), blackWalls.ToArray());
 
+
+        List<Vector3Int> platformPositions = new List<Vector3Int>();
+        List<TileBase> platformTiles = new List<TileBase>();
+
+        int GetRandomYDistanceToNextPlatform()
+        {
+            return (int)(UnityEngine.Random.value * (minMaxYDistanceBetweenPlatforms.y - minMaxYDistanceBetweenPlatforms.x) + minMaxYDistanceBetweenPlatforms.x);
+        }
+
+        int GetRandomPlatformWidth()
+        {
+            return (int)(UnityEngine.Random.value * (minMaxPlatformWidth.y - minMaxPlatformWidth.x) + minMaxPlatformWidth.x);
+        }
+
+        for (int y = -(int)height / 2; y < height / 2; y += GetRandomYDistanceToNextPlatform())
+        {
+            int x = 0;
+            int platformWidth = GetRandomPlatformWidth();
+
+            for (int i = -platformWidth / 2; i < platformWidth / 2; i++)
+            {
+                platformPositions.Add(new Vector3Int(x + i, y, 0));
+                platformTiles.Add(SmallPlatform);
+            }
+        }
+
+        GroundPlayer1.SetTiles(platformPositions.ToArray(), platformTiles.ToArray());
+        GroundPlayer2.SetTiles(platformPositions.ToArray(), platformTiles.ToArray());
+
         Debug.Log($"Generated {width}x{height} tiles of terrain in {(DateTime.Now - before).TotalSeconds} seconds");
     }
+
+
 
 
 
