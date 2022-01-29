@@ -17,11 +17,13 @@ public class Movement2D : MonoBehaviour
 	private bool crouch = false;
 	private bool fire = false;
 
+    public float playerNumber = 1;
+
 	// Update is called once per frame
 	void Update()
 	{
 		//Gets the players horizontal direction
-		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+		horizontalMove = Input.GetAxisRaw("Horizontal"+playerNumber) * runSpeed;
 
 		if(horizontalMove != 0f)
 		{
@@ -43,7 +45,7 @@ public class Movement2D : MonoBehaviour
         {
             jump = false;
             //Gets if the player should jumping
-            if (Input.GetButton("Jump"))
+            if (Input.GetButton("Jump"+playerNumber))
             {
                 jump = true;
             }
