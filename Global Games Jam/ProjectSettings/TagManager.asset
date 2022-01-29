@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Player2
   - Player1
+  - Collectable
   layers:
   - Default
   - TransparentFX
@@ -33,8 +34,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Effects1
+  - Effects2
   - DeathZone1
   - DeathZone2
   - Player1
@@ -48,4 +49,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1167878145
+    locked: 0
+  - name: Effects
+    uniqueID: 3356055065
     locked: 0
