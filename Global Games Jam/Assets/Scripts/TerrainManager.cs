@@ -20,7 +20,7 @@ public class TerrainManager : MonoBehaviour
     private void Start()
     {
         UnityEngine.Random.InitState(0);
-        GenerateAllTerrain(10, 1000, new Vector2Int(2, 5), new Vector2Int(1, 3), new Vector2Int(2, 5));
+        GenerateAllTerrain(19, 1000, new Vector2Int(2, 5), new Vector2Int(1, 3), new Vector2Int(2, 5));
     }
 
     protected void GenerateAllTerrain(uint width, uint height, Vector2Int minMaxYPlatformDistance, Vector2Int minMaxXPlatformDistance, Vector2Int minMaxPlatformWidth)
