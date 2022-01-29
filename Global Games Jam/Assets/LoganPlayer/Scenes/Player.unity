@@ -732,6 +732,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.15853679
       objectReference: {fileID: 0}
+    - target: {fileID: 6480944721146975968, guid: 40f0d58975171d4438c93f48b534c740, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a081e63255d232b4796a61506fcc2022, type: 3}
     - target: {fileID: 6480944721146975971, guid: 40f0d58975171d4438c93f48b534c740, type: 3}
       propertyPath: m_Material
       value: 
@@ -754,7 +758,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6480944721146975975, guid: 40f0d58975171d4438c93f48b534c740, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.724
+      value: 13.47
       objectReference: {fileID: 0}
     - target: {fileID: 6480944721146975975, guid: 40f0d58975171d4438c93f48b534c740, type: 3}
       propertyPath: m_LocalPosition.z
@@ -792,7 +796,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 810571481, guid: 40f0d58975171d4438c93f48b534c740, type: 3}
+    - {fileID: 810571480, guid: 40f0d58975171d4438c93f48b534c740, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 40f0d58975171d4438c93f48b534c740, type: 3}
 --- !u!1 &1984971268 stripped
 GameObject:
@@ -835,7 +841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e2a7379ee4c30c44a2de39e07bcd5b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpVelocity: 4.5
+  jumpVelocity: 12.6
   m_MovementSmoothing: 0.2
   m_AirControl: 1
   m_WhatIsGround:
@@ -844,6 +850,32 @@ MonoBehaviour:
   groundCheck: {fileID: 1984971270}
   ceilingCheck: {fileID: 1984971269}
   m_Grounded: 0
-  fallMultiplier: 4
+  fallMultiplier: 2.8
   lowJumpMultiplier: 3
   ID: 0
+--- !u!61 &1984971273
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984971268}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1.24, y: 2.74}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
