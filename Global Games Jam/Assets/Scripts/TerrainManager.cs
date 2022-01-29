@@ -46,15 +46,6 @@ public class TerrainManager : MonoBehaviour
 
     private void Start()
     {
-        SolidBlocksPlayer1.ClearAllTiles();
-        SolidBlocksPlayer2.ClearAllTiles();
-        BackgroundPlayer1.ClearAllTiles();
-        BackgroundPlayer2.ClearAllTiles();
-        HazardsPlayer1.ClearAllTiles();
-        HazardsPlayer2.ClearAllTiles();
-        BackgroundPlayer1.ClearAllTiles();
-        BackgroundPlayer2.ClearAllTiles();
-
         GenerateAllTerrain();
     }
 
@@ -267,7 +258,7 @@ public class TerrainManager : MonoBehaviour
             PlatformsPlayer2.SetTile(new Vector3Int(i, -1, 0), Player2Platform);
         }
 
-        Debug.Log($"Generated {Settings.Width}x{Settings.Height} tiles of terrain in {(DateTime.Now - before).TotalSeconds} seconds");
+        Debug.Log($"Generated {Settings.Width}x{Settings.Height} tiles of terrain in {(DateTime.Now - before).TotalSeconds} seconds for seed {seed}");
     }
 
 
