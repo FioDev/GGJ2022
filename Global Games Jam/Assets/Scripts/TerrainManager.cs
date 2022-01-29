@@ -53,7 +53,7 @@ public class TerrainManager : MonoBehaviour
 
     protected void GenerateTerrainForHeight(int y)
     {
-        System.Random r = new System.Random(y); 
+        System.Random r = new System.Random(y);
 
         // Solid blocks for the edges
         List<Vector3Int> borders = new List<Vector3Int>();
@@ -137,14 +137,18 @@ public class TerrainManager : MonoBehaviour
         }
 #else
 
+        // Do a random check to see if there should be a platform on this level
+        // OR if there hasn't been one for a while
+        bool doPlatformOnLayer = r.NextDouble() < Settings.NewPlatformChance ||
+            y - lastPlatformPosition.y >= Settings.MaxPlatformDistanceY;
 
-        bool doPlatformOnLayer = r.NextDouble() < Settings.NewPlatformChance;
-
-        if(doPlatformOnLayer)
+        if (doPlatformOnLayer)
         {
+            // Left or right
             int sign = r.Next(0, 2) == 0 ? -1 : 1;
-            int x = 0 + sign * r.Next(Settings.MinPlatformDistanceX, Settings.MaxPlatformDistanceX);
 
+            // Platform pos
+            int x = 0 + sign * r.Next(Settings.MinPlatformDistanceX, Settings.MaxPlatformDistanceX);
             int platformWidth = r.Next(Settings.MinPlatformWidth, Settings.MaxPlatformWidth);
 
             for (int i = 0; i < platformWidth; i++)
@@ -157,17 +161,33 @@ public class TerrainManager : MonoBehaviour
                     p1PlatformTiles.Add(Player1Platform);
                     p2PlatformTiles.Add(Player2Platform);
 
+                    // Record this position
+                    lastPlatformPosition = new Vector3Int(newX, y, 0);
+                }
 
-                    // Just do spikes here for now
-                    if (r.NextDouble() < 0.2f)
+            }
+
+            // Chance for spikes to be on top of the platform
+            if (r.NextDouble() < Settings.SpikeOnPlatformChance)
+            {
+                // Add random number of spikes on top
+                for (int i = r.Next(0, platformWidth + 1); i < platformWidth; i++)
+                {
+                    int newX = x + i - (platformWidth / 2);
+
+                    if (newX > xMin && newX < xMax)
                     {
                         hazardPositions.Add(new Vector3Int(newX, y + 1, 0));
                         p1hazards.Add(Player1Hazards);
                         p2hazards.Add(Player2Hazards);
                     }
+
                 }
             }
         }
+
+        // Chance to do spikes on the wall
+
 #endif
 
         // Now set the tiles
@@ -194,7 +214,7 @@ public class TerrainManager : MonoBehaviour
         }
 
         // Ensure there is a 3x2 platform at 0,0 for the player to spawn at
-        for(int i = -1; i <= 1; i++)
+        for (int i = -1; i <= 1; i++)
         {
             PlatformsPlayer1.SetTile(new Vector3Int(i, 0, 0), Player1Platform);
             PlatformsPlayer1.SetTile(new Vector3Int(i, -1, 0), Player1Platform);
