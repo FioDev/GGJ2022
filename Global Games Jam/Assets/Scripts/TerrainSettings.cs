@@ -9,6 +9,8 @@ public class TerrainSettings : ScriptableObject
     public int Width = 19;
     [Min(0)]
     public int Height = 1000;
+    [Range(0, 1)]
+    public float NewPlatformChance = 0.5f;
     [Min(0)]
     public int MinPlatformDistanceY = 2;
     [Min(0)]
