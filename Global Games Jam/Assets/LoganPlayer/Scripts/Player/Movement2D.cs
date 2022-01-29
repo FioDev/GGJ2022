@@ -14,8 +14,8 @@ public class Movement2D : MonoBehaviour
 	private bool moving = false;
 	private float horizontalMove = 0f;
 	private bool jump = false;
-	private bool crouch = false;
-	private bool fire = false;
+	//private bool crouch = false;
+	//private bool fire = false;
 
     public float playerNumber = 1;
 
