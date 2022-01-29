@@ -41,11 +41,11 @@ public class TilemapGenerator : MonoBehaviour
     void Update()
     {
         List<TileType>[] x = new List<TileType>[2];
-        x = GenerateTileRow(10, 2, Time.deltaTime);
+        x = GenerateTileRow(10, 2, Time.time);
 
         string outputLog = "";
 
-        foreach (TileType y in x[2])
+        foreach (TileType y in x[1])
         {
             if (y == TileType.Air)
             {
@@ -63,9 +63,12 @@ public class TilemapGenerator : MonoBehaviour
     public List<TileType>[] GenerateTileRow(int width, int playerWidth, float heightToGenerate)
     {
         List<TileType>[] temp = new List<TileType>[2];
+        List<TileType> tempLayer = new List<TileType>();
         
         for (int layer = 0; layer < 2; layer++)
         {
+            TileType tileToAdd;
+
             switch (layer)
             {
 
@@ -82,39 +85,44 @@ public class TilemapGenerator : MonoBehaviour
                         //Control ground / air gaps
                         if (x > 0.75)
                         {
-                            Debug.Log("layer is currently " + layer);
-                            temp[layer].Add(TileType.Ground);
+                            tileToAdd = TileType.Ground;
+                            tempLayer.Add(tileToAdd);
                         }
                         else
                         {
-                            temp[layer].Add(TileType.Air);
+                            tileToAdd = TileType.Air;
+
+                            tempLayer.Add(tileToAdd);
                         }
                     }
 
-                    temp[layer] = ValidateGaps(temp[layer], playerWidth);
+                    tempLayer = ValidateGaps(tempLayer, playerWidth);
 
                     break;
 
 
                 case 1:
-                    
+
                     //Check previous layer for ground below. Generate a random number between 1 and 20.
                     //If you roll a nat 20, spawn a collectable over the ground that would be there
-                    foreach (TileType x in temp[layer + 1])
+                    for (int i = 0; i < width; i++)
                     {
                         int y = Random.Range(1, 20);
                         if (y == 20) //Roll a 20, get a collectable (if spawnable in current position (there is ground under you))
                         {
-                            if (x == TileType.Ground)
+                            if (temp[0][i] == TileType.Ground)
                             {
-                                temp[layer].Add(TileType.Collectable);
+                                tileToAdd = TileType.Collectable;
+                                tempLayer.Add(tileToAdd);
                             } else
                             {
-                                temp[layer].Add(TileType.Air);
+                                tileToAdd = TileType.Air;
+                                tempLayer.Add(tileToAdd);
                             }
                         } else 
                         {
-                            temp[layer].Add(TileType.Air);
+                            tileToAdd = TileType.Air;
+                            tempLayer.Add(tileToAdd);
                         }
                     }
 
@@ -125,11 +133,14 @@ public class TilemapGenerator : MonoBehaviour
 
                     for (int i = 0; i < width; i++)
                     {
-                        temp[layer].Add(TileType.Air);
+                        tileToAdd = TileType.Air;
+                        tempLayer.Add(tileToAdd);
                     }
 
                     break;
             }
+
+            temp[layer] = tempLayer;
         }
 
         return temp;
