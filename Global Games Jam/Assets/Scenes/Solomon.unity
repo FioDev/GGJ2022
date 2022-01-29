@@ -393,7 +393,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1984971271, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: runSpeed
-      value: 45
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 1984971271, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: playerNumber
@@ -401,7 +401,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1984971272, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: jumpVelocity
-      value: 14
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1984971272, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: fallMultiplier
@@ -441,7 +441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 309615977949096097, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: m_GravityScale
-      value: 2
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 309615977949096098, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: m_SortingLayer
@@ -880,7 +880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2446b5fd3ba65db4ca1d44198c621ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaximumSpeed: 10
+  MaximumSpeed: 8
   direction: 1
   TimeUntilMaxSpeedSeconds: 30
   SpeedOverTime:
@@ -1167,7 +1167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2446b5fd3ba65db4ca1d44198c621ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaximumSpeed: 10
+  MaximumSpeed: 8
   direction: 1
   TimeUntilMaxSpeedSeconds: 30
   SpeedOverTime:
@@ -2057,11 +2057,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1984971271, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: runSpeed
-      value: 45
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 1984971272, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: jumpVelocity
-      value: 14
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1984971272, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: fallMultiplier
@@ -2101,7 +2101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 309615977949096097, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: m_GravityScale
-      value: 2
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 309615977949096098, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: m_SortingLayer
