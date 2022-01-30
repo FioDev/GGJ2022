@@ -21,7 +21,7 @@ MonoBehaviour:
   NewPlatformChance: 0.25
   MinPlatformDistanceY: 2
   MaxPlatformDistanceY: 3
-  MinPlatformDistanceX: 2
+  MinPlatformDistanceX: 5
   MaxPlatformDistanceX: 7
   MinPlatformWidth: 3
   MaxPlatformWidth: 9
@@ -30,4 +30,4 @@ MonoBehaviour:
   MinWallSpikeDistance: 2
   MinSpikesOnWallGroup: 2
   MaxSpikesOnWallGroup: 4
-  PowerupOnPlatformChance: 0.1
+  PowerupOnPlatformChance: 0.3

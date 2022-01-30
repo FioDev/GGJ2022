@@ -15,9 +15,9 @@ public class Player : MonoBehaviour
         TimeSurvivedSeconds += Time.deltaTime;
     }
 
-    public void PlayPowerupParticle()
+    public void PlayPowerupParticle(Vector3 pos)
     {
-        GameObject g = Instantiate(PowerupParticle, transform.position, Quaternion.identity, null);
+        GameObject g = Instantiate(PowerupParticle, pos, PowerupParticle.transform.rotation, null);
         g.layer = LayerMask.NameToLayer(EffectsLayerForThisPlayer);
     }
 
