@@ -570,7 +570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2446b5fd3ba65db4ca1d44198c621ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaximumSpeed: 0
+  MaximumSpeed: 4
   direction: 1
   TimeUntilMaxSpeedSeconds: 30
   SpeedOverTime:
@@ -1132,7 +1132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2446b5fd3ba65db4ca1d44198c621ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaximumSpeed: 0
+  MaximumSpeed: 4
   direction: 1
   TimeUntilMaxSpeedSeconds: 30
   SpeedOverTime:
