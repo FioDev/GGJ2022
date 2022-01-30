@@ -319,16 +319,20 @@ public class TerrainManager : MonoBehaviour
         for (int i = -1; i <= 1; i++)
         {
             PlatformsPlayer1.SetTile(new Vector3Int(i, 0, 0), Player1Platform);
+            PlatformsPlayer1.SetTile(new Vector3Int(i, 1, 0), null);
             PlatformsPlayer1.SetTile(new Vector3Int(i, -1, 0), Player1Platform);
             HazardsPlayer1.SetTile(new Vector3Int(i, 0, 0), null);
             HazardsPlayer1.SetTile(new Vector3Int(i, -1, 0), null);
-            PlatformsPlayer1.SetTile(new Vector3Int(i, 1, 0), null);
+            HazardsPlayer1.SetTile(new Vector3Int(i, 1, 0), null);
+            HazardsPlayer1.SetTile(new Vector3Int(i, 2, 0), null);
 
             PlatformsPlayer2.SetTile(new Vector3Int(i, 0, 0), Player2Platform);
+            PlatformsPlayer2.SetTile(new Vector3Int(i, 1, 0), null);
             PlatformsPlayer2.SetTile(new Vector3Int(i, -1, 0), Player2Platform);
             HazardsPlayer2.SetTile(new Vector3Int(i, 0, 0), null);
             HazardsPlayer2.SetTile(new Vector3Int(i, -1, 0), null);
-            PlatformsPlayer2.SetTile(new Vector3Int(i, 1, 0), null);
+            HazardsPlayer2.SetTile(new Vector3Int(i, 1, 0), null);
+            HazardsPlayer2.SetTile(new Vector3Int(i, 2, 0), null);
         }
 
         Debug.Log($"Generated {Settings.Width}x{Settings.InitialHeightToGenerate} tiles of terrain in {(DateTime.Now - before).TotalSeconds} seconds for seed {seed}");
