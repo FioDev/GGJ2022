@@ -91,7 +91,7 @@ public class CharacterController2D : MonoBehaviour
 
                 if (dive)
                 {
-                    m_Rigidbody2D.gravityScale *= 10;
+                    m_Rigidbody2D.gravityScale *= 10; //Increase gravity until player lands 
                 }
             }
 

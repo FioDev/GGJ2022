@@ -9,37 +9,52 @@ public class OrbUI : MonoBehaviour
     public Sprite offSprite;
     public Sprite onSprite;
 
+    public int id;
+
     private void Awake()
     {
-        for (int i = 0; i < requiredCollectables; i++)
+        if (id == 1)
         {
-            gameObject.transform.GetChild(i).gameObject.SetActive(true);
+            for (int i = 0; i < requiredCollectables; i++)
+            {
+                gameObject.transform.GetChild(i).gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            for (int i = 9; i >= requiredCollectables; i--)
+            {
+                gameObject.transform.GetChild(i).gameObject.SetActive(true);
+            }
         }
     }
 
     public void UpdateOrbs(int value)
     {
-        if(value >= requiredCollectables)
+        if (value >= requiredCollectables)
         {
             //Set all orbs to off
             for (int i = 0; i < requiredCollectables; i++)
             {
                 gameObject.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite = offSprite;
             }
-        }  
+        }
         else
         {
-            for (int i = 0; i < value; i++)
+            if (id == 1)
             {
-                gameObject.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite = onSprite;
+                for (int i = 0; i < value; i++)
+                {
+                    gameObject.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite = onSprite;
+                }
+            }
+            else
+            {
+                for (int i = 9; i >= value; i--)
+                {
+                    gameObject.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite = onSprite;
+                }
             }
         }
-
-
-
     }
-
-
-
-
 }

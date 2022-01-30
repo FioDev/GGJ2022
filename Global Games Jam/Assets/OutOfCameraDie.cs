@@ -5,6 +5,13 @@ using UnityEngine;
 public class OutOfCameraDie : MonoBehaviour
 {
 
+    private ScoreManager scoreKeeper;
+
+    private void Awake()
+    {
+        scoreKeeper = GameObject.FindGameObjectWithTag("ScoreKeeper").GetComponent<ScoreManager>();
+    }
+
     // BoxCollider2D bxCol;
 
     // // Start is called before the first frame update
@@ -24,6 +31,8 @@ public class OutOfCameraDie : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D col)
     {
+        var id = col.GetComponent<Movement2D>().playerNumber;
+        scoreKeeper.UpdateScore(id);
         Debug.Log(col.tag + "Died");
         Destroy(col.gameObject);
     }

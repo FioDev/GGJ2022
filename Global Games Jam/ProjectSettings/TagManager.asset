@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Player2
   - Player1
+  - Collectable
+  - ScoreKeeper
+  - Score1
+  - Score2
   layers:
   - Default
   - TransparentFX
@@ -48,4 +52,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1167878145
+    locked: 0
+  - name: Camera
+    uniqueID: 3019131499
     locked: 0
