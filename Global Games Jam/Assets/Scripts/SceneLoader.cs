@@ -10,6 +10,7 @@ public class SceneLoader : MonoBehaviour
     {
         if(Input.GetButtonDown("Cancel"))
         {
+            Destroy(GameObject.FindGameObjectWithTag("ScoreKeeper"), 0);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
     }

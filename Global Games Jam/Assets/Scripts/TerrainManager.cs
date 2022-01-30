@@ -62,6 +62,9 @@ public class TerrainManager : MonoBehaviour
 
     private void Start()
     {
+        FindObjectOfType<AudioManager>().Play("Music");
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         grid = GetComponent<Grid>();
 
         GenerateAllTerrain();
