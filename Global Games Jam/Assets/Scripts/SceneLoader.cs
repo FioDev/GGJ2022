@@ -10,8 +10,7 @@ public class SceneLoader : MonoBehaviour
     {
         if(Input.GetButtonDown("Cancel"))
         {
-            Scene scene = SceneManager.GetActiveScene(); 
-            SceneManager.LoadScene(scene.name);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
     }
 
