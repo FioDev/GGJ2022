@@ -11,66 +11,63 @@ public class Movement2D : MonoBehaviour
     public CharacterController2D controller;
 
     public float runSpeed = 40.0f;
-
-    private bool moving = false;
     private float horizontalMove = 0.0f;
     private bool jump = false;
-	private bool dive = false;
+    private bool dive = false;
     //private bool crouch = false;
     //private bool fire = false;
     private float horizontalStore;
- 
-    public bool nonStop = false;
-    public float playerNumber = 1;
 
-	public Animator animator;
+    public bool nonStop = false;
+    public bool reverse = false;
+    public float playerNumber = 1;
+    public Animator animator;
 
     // Update is called once per frame
     void Update()
     {
         //Gets the players horizontal direction
         horizontalMove = Input.GetAxisRaw("Horizontal" + playerNumber) * runSpeed;
-		animator.SetFloat("Speed",Mathf.Abs(horizontalMove));
-        if (horizontalMove != 0.0f)
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+        if (horizontalMove != 0f)
         {
-            moving = true;
-        }
-        else
-        {
-            moving = false;
+            horizontalStore = horizontalMove;
         }
 
-        /*
-		if(Input.GetButton("Left") && Input.GetButton("Right"))
-		{
-			moving = false;
-		}
-		*/
+        if (nonStop)
+        {
+            horizontalMove = horizontalStore;
+        }
+
+        if(reverse)
+        {
+            horizontalMove *= -1;
+        }
 
         if (controller.m_Grounded)
         {
             jump = false;
-			animator.SetBool("IsJumping", false);
+            animator.SetBool("IsJumping", false);
             //Gets if the player should jumping
             if (Input.GetButton("Jump" + playerNumber))
             {
                 jump = true;
-				animator.SetBool("IsJumping",true);
+                animator.SetBool("IsJumping", true);
             }
 
         }
 
-		if (!controller.m_Grounded)
+        if (!controller.m_Grounded)
         {
             //Gets if the player should dive
             if (Input.GetButton("Dive" + playerNumber))
             {
                 dive = true;
             }
-			else
-			{
-				dive = false;
-			}
+            else
+            {
+                dive = false;
+            }
         }
 
         //animator.SetFloat("Speed",Mathf.Abs(horizontalMove));
@@ -93,13 +90,13 @@ public class Movement2D : MonoBehaviour
 
     }
 
-	public void OnLanding()
-	{
-		animator.SetBool("IsJumping", false);
-	}
+    public void OnLanding()
+    {
+        animator.SetBool("IsJumping", false);
+    }
     void FixedUpdate()
     {
         //Passes all inputs to CharacterController2D
-        controller.Move(horizontalMove * Time.fixedDeltaTime, jump, dive, runSpeed, moving);
+        controller.Move(horizontalMove * Time.fixedDeltaTime, jump, dive, runSpeed);
     }
 }

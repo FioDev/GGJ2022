@@ -9,12 +9,23 @@ public class EffectManager : MonoBehaviour
     private float storeRandom = 0;
     public Movement2D move2D;
     public TerrainMvmt terrainMove;
+    public GameObject lamp;
+
+    public int playerNumber;
+
+    private void Update()
+    {
+        if (Input.GetButtonUp("Test" + playerNumber))
+        {
+            Debug.Log("Sent effect");
+            RandomizeEffect();
+        }
+    }
     public void RandomizeEffect()
     {
-
         do
         {
-            randomNumber = Random.Range(0, 4);
+            randomNumber = Random.Range(0, 6);
         }
         while (randomNumber == storeRandom);
 
@@ -22,6 +33,9 @@ public class EffectManager : MonoBehaviour
 
         switch (randomNumber)
         {
+            case 5:
+                ReverseControls();
+                break;
             case 4:
                 ReverseScroll();
                 break;
@@ -43,6 +57,7 @@ public class EffectManager : MonoBehaviour
     private void LightsOut() //The player's vision is reduced to a moving cone
     {
         print("Lights out!");
+        lamp.SetActive(true);
         StartCoroutine(EffectWaitTime(0));
     }
 
@@ -60,11 +75,18 @@ public class EffectManager : MonoBehaviour
         StartCoroutine(EffectWaitTime(2));
     }
 
-    private void NonStop() //The player c annot stop moving
+    private void NonStop() //The player cannot stop moving
     {
         print("Nonstop!");
         move2D.nonStop = true;
         StartCoroutine(EffectWaitTime(3));
+    }
+
+    private void ReverseControls() //The player cannot stop moving
+    {
+        print("Reverse controls!");
+        move2D.reverse = true;
+        StartCoroutine(EffectWaitTime(4));
     }
 
     private void ReverseScroll() //Stage starts scrolling in reverse
@@ -78,6 +100,9 @@ public class EffectManager : MonoBehaviour
         yield return new WaitForSeconds(8);
         switch (ID)
         {
+            case 4:
+                move2D.reverse = false;
+                break;
             case 3:
                 move2D.nonStop = false;
                 break;
@@ -88,7 +113,7 @@ public class EffectManager : MonoBehaviour
                 terrainMove.MaximumSpeed = 4;
                 break;
             case 0:
-
+                lamp.SetActive(false);
                 break;
         }
     }

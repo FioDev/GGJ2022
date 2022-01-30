@@ -46,7 +46,7 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    public void Move(float move, bool jump, bool dive, float runSpeed, bool moving)
+    public void Move(float move, bool jump, bool dive, float runSpeed)
     {
 
         //only control the player if grounded or airControl is turned on
@@ -113,10 +113,6 @@ public class CharacterController2D : MonoBehaviour
                 Flip();
             }
         }
-
-        //animator.SetBool("isGrounded", m_Grounded); //set animator bool for grounded
-        //animator.SetFloat("walkDirection", move); //Set animator int for direction
-        //animator.SetBool("Moving", moving);
     }
 
     private void Flip()
@@ -125,12 +121,5 @@ public class CharacterController2D : MonoBehaviour
         m_FacingRight = !m_FacingRight;
         transform.Rotate(0f, 180f, 0f);
     }
-
-    /*
-    public void ChangeAnimator(int id)
-    {
-        animator.runtimeAnimatorController = controllers[id];
-    }
-    */
 
 }
