@@ -72,6 +72,8 @@ GameObject:
   - component: {fileID: 1984971271}
   - component: {fileID: 1984971272}
   - component: {fileID: 269135114420099790}
+  - component: {fileID: 1520625530}
+  - component: {fileID: 1520625531}
   m_Layer: 30
   m_Name: Player Variant
   m_TagString: Player1
@@ -200,6 +202,7 @@ MonoBehaviour:
   controller: {fileID: 1984971272}
   runSpeed: 40
   nonStop: 0
+  reverse: 0
   playerNumber: 1
   animator: {fileID: 195708624700099933}
 --- !u!114 &1984971272
@@ -265,6 +268,38 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &1520625530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309615977949096111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 165c96077db57164594e17d1e4f5b253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orbUIManager: {fileID: 0}
+  effectMan: {fileID: 1520625531}
+  requiredCollectables: 0
+--- !u!114 &1520625531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309615977949096111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a088535b49b0c4b9b7b9333dd32b19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  move2D: {fileID: 0}
+  terrainMove: {fileID: 0}
+  lamp: {fileID: 0}
+  playerNumber: 1
 --- !u!1 &348087596512513614
 GameObject:
   m_ObjectHideFlags: 0
