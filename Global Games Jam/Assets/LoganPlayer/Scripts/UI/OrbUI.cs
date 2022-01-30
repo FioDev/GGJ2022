@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OrbUI : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class OrbUI : MonoBehaviour
         }
         else
         {
-            for (int i = 9; i >= requiredCollectables; i--)
+            for (int i = 9; i > (9 - requiredCollectables); i--)
             {
                 gameObject.transform.GetChild(i).gameObject.SetActive(true);
             }
@@ -36,7 +37,7 @@ public class OrbUI : MonoBehaviour
             //Set all orbs to off
             for (int i = 0; i < requiredCollectables; i++)
             {
-                gameObject.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite = offSprite;
+                gameObject.transform.GetChild(i).gameObject.GetComponent<Image>().sprite = offSprite;
             }
         }
         else
@@ -45,14 +46,14 @@ public class OrbUI : MonoBehaviour
             {
                 for (int i = 0; i < value; i++)
                 {
-                    gameObject.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite = onSprite;
+                    gameObject.transform.GetChild(i).gameObject.GetComponent<Image>().sprite = onSprite;
                 }
             }
             else
             {
-                for (int i = 9; i >= value; i--)
+                for (int i = 9; i > (9 - value); i--)
                 {
-                    gameObject.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite = onSprite;
+                    gameObject.transform.GetChild(i).gameObject.GetComponent<Image>().sprite = onSprite;
                 }
             }
         }
