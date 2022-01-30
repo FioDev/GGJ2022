@@ -15,7 +15,7 @@ public class TerrainMvmt : MonoBehaviour
 
     float speedValue = 0;
 
-    public Text speedText;
+    //public Text speedText;
 
     // Update is called once per frame
     void Update()
@@ -26,10 +26,10 @@ public class TerrainMvmt : MonoBehaviour
         cameraMotion = new Vector2(0f, speedValue);
         transform.Translate(cameraMotion * Time.deltaTime * direction);
         if(speedValue >= 10){
-            speedText.text = speedValue.ToString().Substring(0,2);
+            //speedText.text = speedValue.ToString().Substring(0,2);
         } else {
 
-        speedText.text = speedValue.ToString().Substring(0,3);
+        //speedText.text = speedValue.ToString().Substring(0,3);
         }
     }
 }
