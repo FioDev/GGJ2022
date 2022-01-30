@@ -31,7 +31,7 @@ public class EffectManager : MonoBehaviour
     }
     public void RandomizeEffect()
     {
-        //
+        //Select an effect at random, can't be last effect used
         do
         {
             randomNumber = Random.Range(0, 7);
@@ -111,7 +111,7 @@ public class EffectManager : MonoBehaviour
         StartCoroutine(EffectWaitTime(4));
     }
 
-    private void Grow()
+    private void Grow() //The player gets larger
     {
         playerEffect.SetActive(true);
         FindObjectOfType<AudioManager>().Play("Grow");
@@ -130,7 +130,7 @@ public class EffectManager : MonoBehaviour
         StartCoroutine(EffectWaitTime(6));
     }
 
-    IEnumerator EffectWaitTime(int ID)
+    IEnumerator EffectWaitTime(int ID) //Wait 8 seconds then remove effect
     {
         yield return new WaitForSeconds(8);
         playerEffect.SetActive(false);

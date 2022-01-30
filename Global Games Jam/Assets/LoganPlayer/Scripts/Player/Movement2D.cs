@@ -33,12 +33,14 @@ public class Movement2D : MonoBehaviour
         {
             horizontalStore = horizontalMove;
         }
-
+        
+        //If nonstop is applied, keep player moving in last known direction
         if (nonStop)
         {
             horizontalMove = horizontalStore;
         }
 
+        //If reverse is applied, reverse horizontal controls
         if(reverse)
         {
             horizontalMove *= -1;
