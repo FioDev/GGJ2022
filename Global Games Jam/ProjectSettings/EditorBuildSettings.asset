@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/SolomonLoganEdit.unity
-    guid: fe4238f8043429d4ab978e341872b67f
+    path: Assets/Scenes/Menu.unity
+    guid: e5b53c56189038545a1160d593e813e9
+  - enabled: 1
+    path: Assets/Scenes/Solomon.unity
+    guid: 179bed4522559e041bb92095db91d5de
   m_configObjects: {}
