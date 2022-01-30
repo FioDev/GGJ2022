@@ -1406,7 +1406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - clip: {fileID: 8300000, guid: 7c4443c4c9c2580418f2d9e7f6cc62cc, type: 3}
-    name: OnStart
+    name: PlayerDeath
     group: {fileID: 0}
     volume: 1
     pitch: 1.41
