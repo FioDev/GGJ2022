@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     {
         if (!isDead)
         {
+            Debug.Log("Kill");
             isDead = true;
             Debug.Log($"{transform.tag} survived for {TimeSurvivedSeconds.ToString("0.0")} seconds");
             GameObject g = Instantiate(BloodSplatter, transform.position, Quaternion.identity, null);

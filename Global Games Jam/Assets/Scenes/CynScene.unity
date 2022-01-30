@@ -983,7 +983,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2684357280
+    m_Bits: 2818575008
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1151,6 +1151,7 @@ MonoBehaviour:
   p1Score: 0
   p2Score: 0
   scoreGoal: 3
+  update: 0
 --- !u!114 &609758965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1396,7 +1397,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1073743200
+    m_Bits: 1140852064
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
