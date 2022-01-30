@@ -696,7 +696,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 1
-  m_SurfaceArc: 180
+  m_SurfaceArc: 179
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
@@ -933,6 +933,36 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   speedText: {fileID: 1161924869}
+--- !u!1 &599255595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 599255596}
+  m_Layer: 0
+  m_Name: Powerup parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &599255596
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599255595}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1076644191}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &788275343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1580,6 +1610,7 @@ Transform:
   m_Children:
   - {fileID: 45003080}
   - {fileID: 1306947684}
+  - {fileID: 599255596}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1616,6 +1647,12 @@ MonoBehaviour:
   Player2HazardsLeft: {fileID: 11400000, guid: 25994afd196b7cc4491eafb20725db3d, type: 2}
   Player2HazardsRight: {fileID: 11400000, guid: b80a057da1a767a46aee13ee53e3c9df, type: 2}
   Settings: {fileID: 11400000, guid: fead42de5194fcf4390a0766e4c9cf5e, type: 2}
+  Cameras:
+  - {fileID: 794607998}
+  - {fileID: 515521535}
+  PowerupParent: {fileID: 599255596}
+  PowerupPrefabPlayer1: {fileID: 7432937068124712347, guid: b8d4670c5e022e4499042def472e49ea, type: 3}
+  PowerupPrefabPlayer2: {fileID: 7432937068124712347, guid: bd8dcdb88e5b3064cbe33fe417dcc215, type: 3}
 --- !u!114 &1076644193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1768,7 +1805,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 1
-  m_SurfaceArc: 180
+  m_SurfaceArc: 179
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1

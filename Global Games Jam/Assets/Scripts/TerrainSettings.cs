@@ -6,33 +6,41 @@ using UnityEngine;
 public class TerrainSettings : ScriptableObject
 {
     [Header("Map Size")]
-    [Min(0)]
+    [Min(1)]
     public int Width = 19;
-    [Min(0)]
-    public int Height = 1000;
+    [Min(1)]
+    public int InitialHeightToGenerate = 500;
+    [Min(1)]
+    public int EndlessTerrainGenerationRadius = 100;
+    [Min(1)]
+    public int SecondsBetweenGenerationChecks = 1;
+
+    [Header("Seed")]
+    public bool DoRandomSeed = true;
+    public int Seed = 0;
 
     [Header("Platforms")]
     [Range(0, 1)]
-    public float NewPlatformChance = 0.3f;
-    [Min(0)]
+    public float NewPlatformChance = 0.25f;
+    [Min(1)]
     public int MinPlatformDistanceY = 2;
-    [Min(0)]
-    public int MaxPlatformDistanceY = 5;
-    [Min(0)]
-    public int MinPlatformDistanceX = 1;
-    [Min(0)]
-    public int MaxPlatformDistanceX = 10;
-    [Min(0)]
-    public int MinPlatformWidth = 1;
-    [Min(0)]
+    [Min(1)]
+    public int MaxPlatformDistanceY = 3;
+    [Min(1)]
+    public int MinPlatformDistanceX = 2;
+    [Min(2)]
+    public int MaxPlatformDistanceX = 7;
+    [Min(1)]
+    public int MinPlatformWidth = 3;
+    [Min(2)]
     public int MaxPlatformWidth = 9;
 
     [Header("Spikes")]
     [Range(0, 1)]
-    public float SpikeOnPlatformChance = 0.2f;
+    public float SpikeOnPlatformChance = 0.1f;
 
     [Range(0, 1)]
-    public float SpikeOnWallChance = 0.1f;
+    public float SpikeOnWallChance = 0.3f;
     [Min(0)]
     public int MinWallSpikeDistance = 2;
 
@@ -40,5 +48,9 @@ public class TerrainSettings : ScriptableObject
     public int MinSpikesOnWallGroup = 2;
     [Min(0)]
     public int MaxSpikesOnWallGroup = 4;
+
+    [Header("Powerups")]
+    [Range(0, 1)]
+    public float PowerupOnPlatformChance = 0.1f;
 
 }

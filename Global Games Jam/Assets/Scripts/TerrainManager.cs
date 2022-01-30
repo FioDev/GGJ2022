@@ -5,7 +5,9 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 using System;
+using System.Collections;
 
+[RequireComponent(typeof(Grid))]
 public class TerrainManager : MonoBehaviour
 {
     [Header("Player 1")]
@@ -43,13 +45,56 @@ public class TerrainManager : MonoBehaviour
 
     [Header("Settings")]
     public TerrainSettings Settings;
+    private int seed = 0;
+
+    [Header("Cameras")]
+    public List<Transform> Cameras;
+
+    [Header("Powerups")]
+    public Transform PowerupParent;
+    public GameObject PowerupPrefabPlayer1;
+    public GameObject PowerupPrefabPlayer2;
+
+
+    private Dictionary<int, bool> LevelsGenerated = new Dictionary<int, bool>();
+    private Grid grid;
+
 
     private void Start()
     {
+        grid = GetComponent<Grid>();
+
         GenerateAllTerrain();
     }
 
-    protected void GenerateTerrainForHeight(int y, int seed)
+    protected void CheckGenerateMoreTerrain()
+    {
+        StartCoroutine(WaitForCheckGenerateTerrain());
+    }
+
+    protected IEnumerator WaitForCheckGenerateTerrain()
+    {
+        foreach (Transform camera in Cameras)
+        {
+            Vector3Int cameraCentre = grid.WorldToCell(camera.position);
+
+            for (int i = -Settings.EndlessTerrainGenerationRadius; i < Settings.EndlessTerrainGenerationRadius; i++)
+            {
+                int y = cameraCentre.y + i;
+
+                if (!LevelsGenerated.ContainsKey(y))
+                {
+                    // Generate one layer of terrain
+                    GenerateTerrainForHeight(y);
+
+                    // Wait for next frame before continuing 
+                    yield return null;
+                }
+            }
+        }
+    }
+
+    protected void GenerateTerrainForHeight(int y)
     {
         System.Random r = new System.Random(seed * y);
 
@@ -137,8 +182,15 @@ public class TerrainManager : MonoBehaviour
 
         // Do a random check to see if there should be a platform on this level
         // OR if there hasn't been one for a while
-        bool doPlatformOnLayer = r.NextDouble() < Settings.NewPlatformChance ||
-            y - lastPlatformPosition.y >= Settings.MaxPlatformDistanceY;
+        int yDistanceToLastPlatform = Mathf.Abs(y - lastPlatformPosition.y);
+
+        bool doPlatformOnLayer =
+            (r.NextDouble() < Settings.NewPlatformChance ||
+         yDistanceToLastPlatform >= Settings.MaxPlatformDistanceY) &&
+         yDistanceToLastPlatform >= Settings.MinPlatformDistanceY;
+
+        //Debug.Log($"y={y} yDist={yDistanceToLastPlatform} do={doPlatformOnLayer}");
+
 
         if (doPlatformOnLayer)
         {
@@ -146,12 +198,14 @@ public class TerrainManager : MonoBehaviour
             int sign = r.Next(0, 2) == 0 ? -1 : 1;
 
             // Platform pos
-            int x = lastPlatformPosition.x + sign * r.Next(Settings.MinPlatformDistanceX, Settings.MaxPlatformDistanceX);
             int platformWidth = r.Next(Settings.MinPlatformWidth, Settings.MaxPlatformWidth);
+            // Ensure the centre is in the correct position so that the whole platform can fit on the screen
+            int platformCentre = Mathf.Clamp(lastPlatformPosition.x + sign * r.Next(Settings.MinPlatformDistanceX, Settings.MaxPlatformDistanceX),
+                xMin + (platformWidth / 2) + 1, xMax - (platformWidth / 2) - 1);
 
             for (int i = 0; i < platformWidth; i++)
             {
-                int newX = x - (platformWidth / 2) + i;
+                int newX = platformCentre - (platformWidth / 2) + i;
 
                 if (newX > xMin && newX < xMax)
                 {
@@ -162,7 +216,6 @@ public class TerrainManager : MonoBehaviour
                     // Record this position
                     lastPlatformPosition = new Vector3Int(newX, y, 0);
                 }
-
             }
 
             // Chance for spikes to be on top of the platform
@@ -171,7 +224,7 @@ public class TerrainManager : MonoBehaviour
                 // Add random number of spikes on top
                 for (int i = r.Next(1, platformWidth); i < platformWidth - 1; i++)
                 {
-                    int newX = x - (platformWidth / 2) + i;
+                    int newX = platformCentre - (platformWidth / 2) + i;
 
                     if (newX > xMin && newX < xMax)
                     {
@@ -180,6 +233,15 @@ public class TerrainManager : MonoBehaviour
                         p2hazards.Add(Player2HazardsUp);
                     }
                 }
+            }
+            // If no spikes, try doing a powerup instead
+            else if (r.NextDouble() < Settings.PowerupOnPlatformChance)
+            {
+                Vector3Int powerupTile = new Vector3Int(platformCentre, y + 1, 0);
+                Vector3 position = grid.GetCellCenterWorld(powerupTile);
+
+                Instantiate(PowerupPrefabPlayer1, position, Quaternion.identity, PowerupParent);
+                Instantiate(PowerupPrefabPlayer2, position, Quaternion.identity, PowerupParent);
             }
         }
 
@@ -190,7 +252,7 @@ public class TerrainManager : MonoBehaviour
             int xPos = r.Next(0, 2) == 0 ? xMin + 1 : xMax - 1;
             int numberOfSpikes = r.Next(Settings.MinSpikesOnWallGroup, Settings.MaxSpikesOnWallGroup);
 
-            if (y - numberOfSpikes / 2 - lastWallSpikesY >= Settings.MinWallSpikeDistance)
+            if (Mathf.Abs(y - numberOfSpikes / 2 - lastWallSpikesY) >= Settings.MinWallSpikeDistance)
             {
                 TileBase p1Rotated;
                 TileBase p2Rotated;
@@ -208,6 +270,7 @@ public class TerrainManager : MonoBehaviour
                     p2Rotated = Player2HazardsRight;
                 }
 
+                // Add the spikes
                 for (int i = 0; i < numberOfSpikes; i++)
                 {
                     int newY = y - (numberOfSpikes / 2) + i;
@@ -217,7 +280,8 @@ public class TerrainManager : MonoBehaviour
                     p2hazards.Add(p2Rotated);
                 }
 
-                lastWallSpikesY = y;
+                // Record the position of the top most spike
+                lastWallSpikesY = y + numberOfSpikes / 2;
             }
         }
 
@@ -232,20 +296,23 @@ public class TerrainManager : MonoBehaviour
         PlatformsPlayer2.SetTiles(platformPositions.ToArray(), p2PlatformTiles.ToArray());
         SolidBlocksPlayer1.SetTiles(borders.ToArray(), p1Borders.ToArray());
         SolidBlocksPlayer2.SetTiles(borders.ToArray(), p2Borders.ToArray());
+
+        LevelsGenerated[y] = true;
     }
 
     protected void GenerateAllTerrain()
     {
         DateTime before = DateTime.Now;
 
-        int seed = Environment.TickCount;
+        // Choose seed
+        seed = Settings.DoRandomSeed ? Environment.TickCount : Settings.Seed;
 
         lastPlatformPosition = new Vector3Int(0, 0, 0);
 
         // Offset the positions so that the map is centered at 0, 0
-        for (int y = -Settings.Height / 2; y < Settings.Height / 2; y++)
+        for (int y = -Settings.InitialHeightToGenerate / 2; y < Settings.InitialHeightToGenerate / 2; y++)
         {
-            GenerateTerrainForHeight(y, seed);
+            GenerateTerrainForHeight(y);
         }
 
         // Ensure there is a 3x2 platform at 0,0 for the player to spawn at
@@ -253,12 +320,20 @@ public class TerrainManager : MonoBehaviour
         {
             PlatformsPlayer1.SetTile(new Vector3Int(i, 0, 0), Player1Platform);
             PlatformsPlayer1.SetTile(new Vector3Int(i, -1, 0), Player1Platform);
+            HazardsPlayer1.SetTile(new Vector3Int(i, 0, 0), null);
+            HazardsPlayer1.SetTile(new Vector3Int(i, -1, 0), null);
+            PlatformsPlayer1.SetTile(new Vector3Int(i, 1, 0), null);
 
             PlatformsPlayer2.SetTile(new Vector3Int(i, 0, 0), Player2Platform);
             PlatformsPlayer2.SetTile(new Vector3Int(i, -1, 0), Player2Platform);
+            HazardsPlayer2.SetTile(new Vector3Int(i, 0, 0), null);
+            HazardsPlayer2.SetTile(new Vector3Int(i, -1, 0), null);
+            PlatformsPlayer2.SetTile(new Vector3Int(i, 1, 0), null);
         }
 
-        Debug.Log($"Generated {Settings.Width}x{Settings.Height} tiles of terrain in {(DateTime.Now - before).TotalSeconds} seconds for seed {seed}");
+        Debug.Log($"Generated {Settings.Width}x{Settings.InitialHeightToGenerate} tiles of terrain in {(DateTime.Now - before).TotalSeconds} seconds for seed {seed}");
+
+        InvokeRepeating("CheckGenerateMoreTerrain", Settings.SecondsBetweenGenerationChecks, Settings.SecondsBetweenGenerationChecks);
     }
 
 
