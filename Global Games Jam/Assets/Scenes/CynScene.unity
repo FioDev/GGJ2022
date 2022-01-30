@@ -2390,7 +2390,7 @@ MonoBehaviour:
     name: PlayerDeath
     group: {fileID: 4477559028413449267, guid: a6a7ca9554cfb3d47b75572560bbcc12, type: 2}
     volume: 1
-    pitch: 1
+    pitch: 1.51
     loop: 0
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: e6feadf0fbb4361428b36da2d1b3b6f4, type: 3}
@@ -2410,7 +2410,7 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: cf94418947e80eb419ef1a431b49d973, type: 3}
     name: Music
     group: {fileID: -1927870078162595328, guid: a6a7ca9554cfb3d47b75572560bbcc12, type: 2}
-    volume: 0.74
+    volume: 0.07
     pitch: 1
     loop: 1
     source: {fileID: 0}
