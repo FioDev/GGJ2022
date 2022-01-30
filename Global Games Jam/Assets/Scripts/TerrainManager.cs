@@ -62,6 +62,8 @@ public class TerrainManager : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         grid = GetComponent<Grid>();
 
         GenerateAllTerrain();
