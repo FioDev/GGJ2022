@@ -183,8 +183,11 @@ public class TerrainManager : MonoBehaviour
         // Do a random check to see if there should be a platform on this level
         // OR if there hasn't been one for a while
         int yDistanceToLastPlatform = Mathf.Abs(y - lastPlatformPosition.y);
-        bool doPlatformOnLayer = r.NextDouble() < Settings.NewPlatformChance ||
-         yDistanceToLastPlatform >= Settings.MaxPlatformDistanceY;
+
+        bool doPlatformOnLayer =
+            (r.NextDouble() < Settings.NewPlatformChance ||
+         yDistanceToLastPlatform >= Settings.MaxPlatformDistanceY) &&
+         yDistanceToLastPlatform >= Settings.MinPlatformDistanceY;
 
         //Debug.Log($"y={y} yDist={yDistanceToLastPlatform} do={doPlatformOnLayer}");
 

@@ -23,7 +23,7 @@ public class TerrainSettings : ScriptableObject
     [Range(0, 1)]
     public float NewPlatformChance = 0.25f;
     [Min(1)]
-    public int MinPlatformDistanceY = 1;
+    public int MinPlatformDistanceY = 2;
     [Min(1)]
     public int MaxPlatformDistanceY = 3;
     [Min(1)]
