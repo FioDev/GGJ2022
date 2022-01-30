@@ -22,8 +22,8 @@ MonoBehaviour:
   MinPlatformDistanceY: 2
   MaxPlatformDistanceY: 3
   MinPlatformDistanceX: 5
-  MaxPlatformDistanceX: 7
-  MinPlatformWidth: 3
+  MaxPlatformDistanceX: 9
+  MinPlatformWidth: 2
   MaxPlatformWidth: 9
   SpikeOnPlatformChance: 0.1
   SpikeOnWallChance: 0.3
