@@ -7,13 +7,26 @@ public class EffectManager : MonoBehaviour
 
     private float randomNumber = 0;
     private float storeRandom = 0;
+    public Transform player;
     public Movement2D move2D;
+    public TerrainMvmt terrainMove;
+    public GameObject lamp;
+
+    public int playerNumber;
+
+    private void Update()
+    {
+        if (Input.GetButtonUp("Test" + playerNumber))
+        {
+            Debug.Log("Sent effect");
+            RandomizeEffect();
+        }
+    }
     public void RandomizeEffect()
     {
-
         do
         {
-            randomNumber = Random.Range(0, 4);
+            randomNumber = Random.Range(0, 7);
         }
         while (randomNumber == storeRandom);
 
@@ -21,6 +34,12 @@ public class EffectManager : MonoBehaviour
 
         switch (randomNumber)
         {
+            case 6:
+                Grow();
+                break;
+            case 5:
+                ReverseControls();
+                break;
             case 4:
                 ReverseScroll();
                 break;
@@ -42,12 +61,14 @@ public class EffectManager : MonoBehaviour
     private void LightsOut() //The player's vision is reduced to a moving cone
     {
         print("Lights out!");
+        lamp.SetActive(true);
         StartCoroutine(EffectWaitTime(0));
     }
 
     private void ScrollSpeedUp() //The stage scrolls faster
     {
         print("Scroll speed up!");
+        terrainMove.MaximumSpeed = 6;
         StartCoroutine(EffectWaitTime(1));
     }
 
@@ -58,17 +79,32 @@ public class EffectManager : MonoBehaviour
         StartCoroutine(EffectWaitTime(2));
     }
 
-    private void NonStop() //The player c annot stop moving
+    private void NonStop() //The player cannot stop moving
     {
         print("Nonstop!");
         move2D.nonStop = true;
         StartCoroutine(EffectWaitTime(3));
     }
 
+    private void ReverseControls() //The player cannot stop moving
+    {
+        print("Reverse controls!");
+        move2D.reverse = true;
+        StartCoroutine(EffectWaitTime(4));
+    }
+
+    private void Grow()
+    {
+        print("Grow!");
+        player.transform.position += new Vector3(0.0f, 1.0f, 0.0f);
+        player.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        StartCoroutine(EffectWaitTime(5));
+    }
+
     private void ReverseScroll() //Stage starts scrolling in reverse
     {
         print("Reverse!");
-        StartCoroutine(EffectWaitTime(4));
+        terrainMove.direction *= -1;
     }
 
     IEnumerator EffectWaitTime(int ID)
@@ -76,8 +112,11 @@ public class EffectManager : MonoBehaviour
         yield return new WaitForSeconds(8);
         switch (ID)
         {
+            case 5:
+                player.localScale = new Vector3(1, 1, 1);
+                break;
             case 4:
-
+                move2D.reverse = false;
                 break;
             case 3:
                 move2D.nonStop = false;
@@ -86,10 +125,10 @@ public class EffectManager : MonoBehaviour
                 move2D.runSpeed = 30;
                 break;
             case 1:
-
+                terrainMove.MaximumSpeed = 4;
                 break;
             case 0:
-
+                lamp.SetActive(false);
                 break;
         }
     }
