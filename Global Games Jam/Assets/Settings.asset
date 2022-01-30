@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5948375566e787445a9252b7ad564ac0, type: 3}
-  m_Name: 
+  m_Name: Settings
   m_EditorClassIdentifier: 
   Width: 19
   InitialHeightToGenerate: 500
@@ -30,3 +30,4 @@ MonoBehaviour:
   MinWallSpikeDistance: 2
   MinSpikesOnWallGroup: 2
   MaxSpikesOnWallGroup: 4
+  PowerupOnPlatformChance: 0.1

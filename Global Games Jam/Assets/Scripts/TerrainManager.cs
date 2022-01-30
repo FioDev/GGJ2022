@@ -50,6 +50,12 @@ public class TerrainManager : MonoBehaviour
     [Header("Cameras")]
     public List<Transform> Cameras;
 
+    [Header("Powerups")]
+    public Transform PowerupParent;
+    public GameObject PowerupPrefabPlayer1;
+    public GameObject PowerupPrefabPlayer2;
+
+
     private Dictionary<int, bool> LevelsGenerated = new Dictionary<int, bool>();
     private Grid grid;
 
@@ -224,6 +230,15 @@ public class TerrainManager : MonoBehaviour
                         p2hazards.Add(Player2HazardsUp);
                     }
                 }
+            }
+            // If no spikes, try doing a powerup instead
+            else if (r.NextDouble() < Settings.PowerupOnPlatformChance)
+            {
+                Vector3Int powerupTile = new Vector3Int(platformCentre, y + 1, 0);
+                Vector3 position = grid.GetCellCenterWorld(powerupTile);
+
+                Instantiate(PowerupPrefabPlayer1, position, Quaternion.identity, PowerupParent);
+                Instantiate(PowerupPrefabPlayer2, position, Quaternion.identity, PowerupParent);
             }
         }
 

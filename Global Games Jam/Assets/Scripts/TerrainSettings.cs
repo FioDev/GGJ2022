@@ -49,4 +49,8 @@ public class TerrainSettings : ScriptableObject
     [Min(0)]
     public int MaxSpikesOnWallGroup = 4;
 
+    [Header("Powerups")]
+    [Range(0, 1)]
+    public float PowerupOnPlatformChance = 0.1f;
+
 }
