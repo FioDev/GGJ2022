@@ -14,6 +14,7 @@ public class OrbUI : MonoBehaviour
 
     private void Awake()
     {
+        //Set as many UI nodes active as is needed, per required number of collectables for sending effects
         if (id == 1)
         {
             for (int i = 0; i < requiredCollectables; i++)
@@ -32,6 +33,7 @@ public class OrbUI : MonoBehaviour
 
     public void UpdateOrbs(int value)
     {
+        //If effect is sent, turn all UI orbs off
         if (value >= requiredCollectables)
         {
             //Set all orbs to off
@@ -42,6 +44,7 @@ public class OrbUI : MonoBehaviour
         }
         else
         {
+            //Turn on orbs, player 2 does this in reverse order
             if (id == 1)
             {
                 for (int i = 0; i < value; i++)

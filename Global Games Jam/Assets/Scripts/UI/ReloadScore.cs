@@ -16,6 +16,7 @@ public class ReloadScore : MonoBehaviour
         score = gameObject.GetComponent<Text>();
         scoreMan = GameObject.FindGameObjectWithTag("ScoreKeeper").GetComponent<ScoreManager>();
 
+        //Update score on load
         if (ID == 1)
         {
             score.text = scoreMan.p1Score.ToString();

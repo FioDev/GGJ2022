@@ -31,7 +31,7 @@ public class EffectManager : MonoBehaviour
     }
     public void RandomizeEffect()
     {
-        //
+        //Select an effect at random, can't be last effect used
         do
         {
             randomNumber = Random.Range(0, 7);
@@ -69,6 +69,7 @@ public class EffectManager : MonoBehaviour
     private void LightsOut() //The player's vision is reduced to a moving cone
     {
         playerEffect.SetActive(true);
+        FindObjectOfType<AudioManager>().Play("LightsOut");
         playerEffectText.text = "Lights, Sabotaged!";
         lamp.SetActive(true);
         StartCoroutine(EffectWaitTime(0));
@@ -77,6 +78,7 @@ public class EffectManager : MonoBehaviour
     private void ScrollSpeedUp() //The stage scrolls faster
     {
         playerEffect.SetActive(true);
+        FindObjectOfType<AudioManager>().Play("ScrollSpeedUp");
         playerEffectText.text = "Keep the pace!";
         terrainMove.MaximumSpeed = 6;
         StartCoroutine(EffectWaitTime(1));
@@ -85,6 +87,7 @@ public class EffectManager : MonoBehaviour
     private void PlayerSpeedUp() //The player's movement speed is increased
     {
         playerEffect.SetActive(true);
+        FindObjectOfType<AudioManager>().Play("SpeedUp");
         playerEffectText.text = "Speed, Maximum!";
         move2D.runSpeed *= 3;
         StartCoroutine(EffectWaitTime(2));
@@ -93,6 +96,7 @@ public class EffectManager : MonoBehaviour
     private void NonStop() //The player cannot stop moving
     {
         playerEffect.SetActive(true);
+        FindObjectOfType<AudioManager>().Play("NonStop");
         playerEffectText.text = "Can't stop!";
         move2D.nonStop = true;
         StartCoroutine(EffectWaitTime(3));
@@ -101,14 +105,16 @@ public class EffectManager : MonoBehaviour
     private void ReverseControls() //The player cannot stop moving
     {
         playerEffect.SetActive(true);
+        FindObjectOfType<AudioManager>().Play("ReverseControls");
         playerEffectText.text = "Controls, Inverted!";
         move2D.reverse = true;
         StartCoroutine(EffectWaitTime(4));
     }
 
-    private void Grow()
+    private void Grow() //The player gets larger
     {
         playerEffect.SetActive(true);
+        FindObjectOfType<AudioManager>().Play("Grow");
         playerEffectText.text = "Gigantic!";
         player.transform.position += new Vector3(0.0f, 1.0f, 0.0f);
         player.localScale = new Vector3(1.5f, 1.5f, 1.5f);
@@ -118,12 +124,13 @@ public class EffectManager : MonoBehaviour
     private void ReverseScroll() //Stage starts scrolling in reverse
     {
         playerEffect.SetActive(true);
+        FindObjectOfType<AudioManager>().Play("ReverseScroll");
         playerEffectText.text = "Going in reverse!";
         terrainMove.direction *= -1;
         StartCoroutine(EffectWaitTime(6));
     }
 
-    IEnumerator EffectWaitTime(int ID)
+    IEnumerator EffectWaitTime(int ID) //Wait 8 seconds then remove effect
     {
         yield return new WaitForSeconds(8);
         playerEffect.SetActive(false);

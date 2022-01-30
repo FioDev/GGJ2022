@@ -11,8 +11,13 @@ public class ScoreManager : MonoBehaviour
     public int scoreGoal = 3;
 
     public bool update;
+
+    public Text winText;
+
+    private bool gameOver = false;
     public void UpdateScore(float ID)
     {
+        //Only update once per scene reload
         if (!update)
         {
             if (ID == 1)
@@ -33,7 +38,14 @@ public class ScoreManager : MonoBehaviour
             }
 
             update = true;
-            ReloadScene();
+            if (!gameOver)
+            {
+                ReloadScene();
+            }
+            else
+            {
+                EndGame();
+            }
         }
 
     }
@@ -43,13 +55,18 @@ public class ScoreManager : MonoBehaviour
         if (ID == 1)
         {
             //P1 wins!
-            print("Player 1 wins!");
+            winText.text = "Player 1 Wins!";
+            winText.color = Color.magenta;
         }
         else
         {
             //P2 wins!
-            print("Player 2 wins!");
+            winText.text = "Player 2 Wins!";
+            winText.color = Color.cyan;
+
         }
+
+        gameOver = true;
     }
 
     public void ReloadScene()
@@ -57,10 +74,27 @@ public class ScoreManager : MonoBehaviour
         StartCoroutine(Reset());
     }
 
+    public void EndGame()
+    {
+        StartCoroutine(End());
+    }
+
     IEnumerator Reset()
     {
         yield return new WaitForSeconds(1);
         update = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    IEnumerator End()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        //Destroy(gameObject, 0); //Remove this, this will be used once main menu exists
+
+        //Temp solution below
+        winText.text = "";
+        p1Score = 0;
+        p2Score = 0;
     }
 }
