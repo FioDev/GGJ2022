@@ -21,6 +21,7 @@ public class Collectable : MonoBehaviour
             Debug.Log("Player Entered Orb");
             manager = collision.gameObject.GetComponent<CollectableManager>(); //Get players collectable manager
             manager.AddOrbs(value); //Add value to player
+            FindObjectOfType<AudioManager>().Play("PowerUp");
             Destroy(gameObject, 0); //Remove orb
         }
     }
