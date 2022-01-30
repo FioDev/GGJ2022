@@ -137,8 +137,12 @@ public class TerrainManager : MonoBehaviour
 
         // Do a random check to see if there should be a platform on this level
         // OR if there hasn't been one for a while
+        int yDistanceToLastPlatform = Mathf.Abs(y - lastPlatformPosition.y);
         bool doPlatformOnLayer = r.NextDouble() < Settings.NewPlatformChance ||
-            y - lastPlatformPosition.y >= Settings.MaxPlatformDistanceY;
+         yDistanceToLastPlatform >= Settings.MaxPlatformDistanceY;
+
+        //Debug.Log($"y={y} yDist={yDistanceToLastPlatform} do={doPlatformOnLayer}");
+
 
         if (doPlatformOnLayer)
         {
@@ -146,12 +150,14 @@ public class TerrainManager : MonoBehaviour
             int sign = r.Next(0, 2) == 0 ? -1 : 1;
 
             // Platform pos
-            int x = lastPlatformPosition.x + sign * r.Next(Settings.MinPlatformDistanceX, Settings.MaxPlatformDistanceX);
             int platformWidth = r.Next(Settings.MinPlatformWidth, Settings.MaxPlatformWidth);
+            // Ensure the centre is in the correct position so that the whole platform can fit on the screen
+            int platformCentre = Mathf.Clamp(lastPlatformPosition.x + sign * r.Next(Settings.MinPlatformDistanceX, Settings.MaxPlatformDistanceX), 
+                xMin + (platformWidth / 2), xMax - (platformWidth / 2));
 
             for (int i = 0; i < platformWidth; i++)
             {
-                int newX = x - (platformWidth / 2) + i;
+                int newX = platformCentre - (platformWidth / 2) + i;
 
                 if (newX > xMin && newX < xMax)
                 {
@@ -162,6 +168,10 @@ public class TerrainManager : MonoBehaviour
                     // Record this position
                     lastPlatformPosition = new Vector3Int(newX, y, 0);
                 }
+                else
+                {
+                    Debug.Log("THIS WAS THE PROBLEM");
+                }
 
             }
 
@@ -171,7 +181,7 @@ public class TerrainManager : MonoBehaviour
                 // Add random number of spikes on top
                 for (int i = r.Next(1, platformWidth); i < platformWidth - 1; i++)
                 {
-                    int newX = x - (platformWidth / 2) + i;
+                    int newX = platformCentre - (platformWidth / 2) + i;
 
                     if (newX > xMin && newX < xMax)
                     {
@@ -208,6 +218,7 @@ public class TerrainManager : MonoBehaviour
                     p2Rotated = Player2HazardsRight;
                 }
 
+                // Add the spikes
                 for (int i = 0; i < numberOfSpikes; i++)
                 {
                     int newY = y - (numberOfSpikes / 2) + i;
@@ -217,7 +228,8 @@ public class TerrainManager : MonoBehaviour
                     p2hazards.Add(p2Rotated);
                 }
 
-                lastWallSpikesY = y;
+                // Record the position of the top most spike
+                lastWallSpikesY = y + numberOfSpikes / 2;
             }
         }
 
@@ -238,7 +250,8 @@ public class TerrainManager : MonoBehaviour
     {
         DateTime before = DateTime.Now;
 
-        int seed = Environment.TickCount;
+        // Choose seed
+        int seed = Settings.DoRandomSeed ? Environment.TickCount : Settings.Seed;
 
         lastPlatformPosition = new Vector3Int(0, 0, 0);
 
@@ -253,9 +266,13 @@ public class TerrainManager : MonoBehaviour
         {
             PlatformsPlayer1.SetTile(new Vector3Int(i, 0, 0), Player1Platform);
             PlatformsPlayer1.SetTile(new Vector3Int(i, -1, 0), Player1Platform);
+            HazardsPlayer1.SetTile(new Vector3Int(i, 0, 0), null);
+            HazardsPlayer1.SetTile(new Vector3Int(i, 0, 0), null);
 
             PlatformsPlayer2.SetTile(new Vector3Int(i, 0, 0), Player2Platform);
             PlatformsPlayer2.SetTile(new Vector3Int(i, -1, 0), Player2Platform);
+            HazardsPlayer2.SetTile(new Vector3Int(i, 0, 0), null);
+            HazardsPlayer2.SetTile(new Vector3Int(i, -1, 0), null);
         }
 
         Debug.Log($"Generated {Settings.Width}x{Settings.Height} tiles of terrain in {(DateTime.Now - before).TotalSeconds} seconds for seed {seed}");
