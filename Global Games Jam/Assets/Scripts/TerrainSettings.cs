@@ -6,10 +6,14 @@ using UnityEngine;
 public class TerrainSettings : ScriptableObject
 {
     [Header("Map Size")]
-    [Min(0)]
+    [Min(1)]
     public int Width = 19;
-    [Min(0)]
-    public int Height = 1000;
+    [Min(1)]
+    public int InitialHeightToGenerate = 500;
+    [Min(1)]
+    public int EndlessTerrainGenerationRadius = 100;
+    [Min(1)]
+    public int SecondsBetweenGenerationChecks = 1;
 
     [Header("Seed")]
     public bool DoRandomSeed = true;

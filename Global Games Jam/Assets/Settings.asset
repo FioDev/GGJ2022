@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Width: 19
-  Height: 1000
+  InitialHeightToGenerate: 500
+  EndlessTerrainGenerationRadius: 100
+  SecondsBetweenGenerationChecks: 1
   DoRandomSeed: 1
   Seed: 0
   NewPlatformChance: 0.25
