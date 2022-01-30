@@ -46,21 +46,12 @@ public class TerrainManager : MonoBehaviour
 
     private void Start()
     {
-        SolidBlocksPlayer1.ClearAllTiles();
-        SolidBlocksPlayer2.ClearAllTiles();
-        BackgroundPlayer1.ClearAllTiles();
-        BackgroundPlayer2.ClearAllTiles();
-        HazardsPlayer1.ClearAllTiles();
-        HazardsPlayer2.ClearAllTiles();
-        BackgroundPlayer1.ClearAllTiles();
-        BackgroundPlayer2.ClearAllTiles();
-
         GenerateAllTerrain();
     }
 
-    protected void GenerateTerrainForHeight(int y)
+    protected void GenerateTerrainForHeight(int y, int seed)
     {
-        System.Random r = new System.Random(y);
+        System.Random r = new System.Random(seed * y);
 
         // Solid blocks for the edges
         List<Vector3Int> borders = new List<Vector3Int>();
@@ -247,12 +238,14 @@ public class TerrainManager : MonoBehaviour
     {
         DateTime before = DateTime.Now;
 
+        int seed = Environment.TickCount;
+
         lastPlatformPosition = new Vector3Int(0, 0, 0);
 
         // Offset the positions so that the map is centered at 0, 0
         for (int y = -Settings.Height / 2; y < Settings.Height / 2; y++)
         {
-            GenerateTerrainForHeight(y);
+            GenerateTerrainForHeight(y, seed);
         }
 
         // Ensure there is a 3x2 platform at 0,0 for the player to spawn at
@@ -265,7 +258,7 @@ public class TerrainManager : MonoBehaviour
             PlatformsPlayer2.SetTile(new Vector3Int(i, -1, 0), Player2Platform);
         }
 
-        Debug.Log($"Generated {Settings.Width}x{Settings.Height} tiles of terrain in {(DateTime.Now - before).TotalSeconds} seconds");
+        Debug.Log($"Generated {Settings.Width}x{Settings.Height} tiles of terrain in {(DateTime.Now - before).TotalSeconds} seconds for seed {seed}");
     }
 
 

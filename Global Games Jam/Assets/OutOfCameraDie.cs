@@ -6,7 +6,7 @@ public class OutOfCameraDie : MonoBehaviour
 {
 
     private ScoreManager scoreKeeper;
-    
+
     private void Awake()
     {
         scoreKeeper = GameObject.FindGameObjectWithTag("ScoreKeeper").GetComponent<ScoreManager>();
@@ -31,10 +31,12 @@ public class OutOfCameraDie : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D col)
     {
-        var id = col.GetComponent<Movement2D>().playerNumber;
-        scoreKeeper.UpdateScore(id);
-        Debug.Log(col.tag + "Died");
-        Destroy(col.gameObject);
+        if (col.TryGetComponent(out Player player))
+        {
+            var id = col.GetComponent<Movement2D>().playerNumber;
+            scoreKeeper.UpdateScore(id);
+            player.KillPlayer();
+        }
     }
 
 }

@@ -7,9 +7,6 @@ TagManager:
   - Player2
   - Player1
   - Collectable
-  - ScoreKeeper
-  - Score1
-  - Score2
   layers:
   - Default
   - TransparentFX
@@ -37,8 +34,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Effects1
+  - Effects2
   - DeathZone1
   - DeathZone2
   - Player1
@@ -53,6 +50,6 @@ TagManager:
   - name: Player
     uniqueID: 1167878145
     locked: 0
-  - name: Camera
-    uniqueID: 3019131499
+  - name: Effects
+    uniqueID: 3356055065
     locked: 0

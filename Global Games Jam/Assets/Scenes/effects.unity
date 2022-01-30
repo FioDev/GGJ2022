@@ -423,10 +423,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 195708624700099933, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: a928c27741b5a2c44b5cf38db5a0819e, type: 2}
     - target: {fileID: 309615977153791943, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: m_Layer
       value: 31
@@ -1225,7 +1221,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1984971272, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
   m_PrefabInstance: {fileID: 1699622645}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037279130}
+  m_GameObject: {fileID: 1699622646}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e2a7379ee4c30c44a2de39e07bcd5b8, type: 3}
@@ -1241,7 +1237,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1984971271, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
   m_PrefabInstance: {fileID: 1699622645}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037279130}
+  m_GameObject: {fileID: 1699622646}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ab2f4aff3fc00847833d548f524b898, type: 3}
@@ -1547,7 +1543,6 @@ GameObject:
   - component: {fileID: 1076644190}
   - component: {fileID: 1076644192}
   - component: {fileID: 1076644193}
-  - component: {fileID: 1076644194}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -1626,18 +1621,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7296dbf38ae34f4eba8efef0a476c98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1076644194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1076644189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67d82b605c2419247b135bceb6b73ae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1161924867
@@ -2277,26 +2260,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
---- !u!1 &1880581643 stripped
+--- !u!1 &1699622646 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 309615977949096111, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
-  m_PrefabInstance: {fileID: 95206012}
+  m_PrefabInstance: {fileID: 1699622645}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1880581644
+--- !u!114 &1699622647
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1880581643}
+  m_GameObject: {fileID: 1699622646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8baa0c0686d002a43babe53ed67e5254, type: 3}
+  m_Script: {fileID: 11500000, guid: 86a088535b49b0c4b9b7b9333dd32b19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BloodSplatter: {fileID: 3043471895594458797, guid: 6766aab33a5ef9d47a89c31e6263a342, type: 3}
-  EffectsLayerForThisPlayer: Effects2
-  TimeSurvivedSeconds: 0
+  move2D: {fileID: 0}
+--- !u!114 &1699622648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699622646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 165c96077db57164594e17d1e4f5b253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orbUIManager: {fileID: 0}
+  effectMan: {fileID: 1699622647}
+  requiredCollectables: 0
 --- !u!95 &1880581646 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 195708624700099933, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
@@ -2520,23 +2516,3 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1 &2037279130 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 309615977949096111, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
-  m_PrefabInstance: {fileID: 1699622645}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2037279131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037279130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8baa0c0686d002a43babe53ed67e5254, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BloodSplatter: {fileID: 3043471895594458797, guid: 6766aab33a5ef9d47a89c31e6263a342, type: 3}
-  EffectsLayerForThisPlayer: Effects1
-  TimeSurvivedSeconds: 0
