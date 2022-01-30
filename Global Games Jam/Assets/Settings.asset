@@ -19,7 +19,7 @@ MonoBehaviour:
   DoRandomSeed: 1
   Seed: 0
   NewPlatformChance: 0.25
-  MinPlatformDistanceY: 1
+  MinPlatformDistanceY: 2
   MaxPlatformDistanceY: 3
   MinPlatformDistanceX: 2
   MaxPlatformDistanceX: 7
