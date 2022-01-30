@@ -9,26 +9,33 @@ public class ScoreManager : MonoBehaviour
     public float p1Score = 0;
     public float p2Score = 0;
     public int scoreGoal = 3;
+
+    public bool update;
     public void UpdateScore(float ID)
     {
-        if (ID == 1)
+        if (!update)
         {
-            p2Score += 1;
-            if (p2Score == 3)
+            if (ID == 1)
             {
-                DeclareWinner(2);
+                p2Score += 1;
+                if (p2Score == 3)
+                {
+                    DeclareWinner(2);
+                }
             }
-        }
-        else if (ID == 2)
-        {
-            p1Score += 1f;
-            if (p1Score == 3)
+            else if (ID == 2)
             {
-                DeclareWinner(1);
+                p1Score += 1f;
+                if (p1Score == 3)
+                {
+                    DeclareWinner(1);
+                }
             }
+
+            update = true;
+            ReloadScene();
         }
 
-        ReloadScene();
     }
 
     public void DeclareWinner(int ID)
@@ -47,6 +54,13 @@ public class ScoreManager : MonoBehaviour
 
     public void ReloadScene()
     {
+        StartCoroutine(Reset());
+    }
+
+    IEnumerator Reset()
+    {
+        yield return new WaitForSeconds(1);
+        update = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
