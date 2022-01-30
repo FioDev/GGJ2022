@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Kill");
             isDead = true;
+            FindObjectOfType<AudioManager>().Play("PlayerDeath");
             Debug.Log($"{transform.tag} survived for {TimeSurvivedSeconds.ToString("0.0")} seconds");
             GameObject g = Instantiate(BloodSplatter, transform.position, Quaternion.identity, null);
             g.layer = LayerMask.NameToLayer(EffectsLayerForThisPlayer);
