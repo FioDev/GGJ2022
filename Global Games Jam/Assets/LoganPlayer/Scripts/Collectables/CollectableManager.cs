@@ -19,14 +19,13 @@ public class CollectableManager : MonoBehaviour
 
     public void AddOrbs(int orbValue)
     {
-        currentCollectables += orbValue;
+        currentCollectables += orbValue; //Player gains debuff progress based on orb value
 
         orbUIManager.UpdateOrbs(currentCollectables);
 
         if (currentCollectables >= requiredCollectables)
         {
             //Send Debuff here..
-            Debug.Log("Send debuff!");
             effectMan.RandomizeEffect();
             currentCollectables = 0;
         }

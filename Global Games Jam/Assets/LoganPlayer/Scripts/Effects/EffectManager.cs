@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EffectManager : MonoBehaviour
 {
@@ -12,18 +13,25 @@ public class EffectManager : MonoBehaviour
     public TerrainMvmt terrainMove;
     public GameObject lamp;
 
+    public GameObject playerEffect;
+    private Text playerEffectText;
     public int playerNumber;
+
+    private void Awake()
+    {
+        playerEffectText = playerEffect.GetComponent<Text>();
+    }
 
     private void Update()
     {
         if (Input.GetButtonUp("Test" + playerNumber))
         {
-            Debug.Log("Sent effect");
             RandomizeEffect();
         }
     }
     public void RandomizeEffect()
     {
+        //
         do
         {
             randomNumber = Random.Range(0, 7);
@@ -60,42 +68,48 @@ public class EffectManager : MonoBehaviour
 
     private void LightsOut() //The player's vision is reduced to a moving cone
     {
-        print("Lights out!");
+        playerEffect.SetActive(true);
+        playerEffectText.text = "Lights, Sabotaged!";
         lamp.SetActive(true);
         StartCoroutine(EffectWaitTime(0));
     }
 
     private void ScrollSpeedUp() //The stage scrolls faster
     {
-        print("Scroll speed up!");
+        playerEffect.SetActive(true);
+        playerEffectText.text = "Keep the pace!";
         terrainMove.MaximumSpeed = 6;
         StartCoroutine(EffectWaitTime(1));
     }
 
     private void PlayerSpeedUp() //The player's movement speed is increased
     {
-        print("Speed up!");
+        playerEffect.SetActive(true);
+        playerEffectText.text = "Speed, Maximum!";
         move2D.runSpeed *= 3;
         StartCoroutine(EffectWaitTime(2));
     }
 
     private void NonStop() //The player cannot stop moving
     {
-        print("Nonstop!");
+        playerEffect.SetActive(true);
+        playerEffectText.text = "Can't stop!";
         move2D.nonStop = true;
         StartCoroutine(EffectWaitTime(3));
     }
 
     private void ReverseControls() //The player cannot stop moving
     {
-        print("Reverse controls!");
+        playerEffect.SetActive(true);
+        playerEffectText.text = "Controls, Inverted!";
         move2D.reverse = true;
         StartCoroutine(EffectWaitTime(4));
     }
 
     private void Grow()
     {
-        print("Grow!");
+        playerEffect.SetActive(true);
+        playerEffectText.text = "Gigantic!";
         player.transform.position += new Vector3(0.0f, 1.0f, 0.0f);
         player.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         StartCoroutine(EffectWaitTime(5));
@@ -103,15 +117,21 @@ public class EffectManager : MonoBehaviour
 
     private void ReverseScroll() //Stage starts scrolling in reverse
     {
-        print("Reverse!");
+        playerEffect.SetActive(true);
+        playerEffectText.text = "Going in reverse!";
         terrainMove.direction *= -1;
+        StartCoroutine(EffectWaitTime(6));
     }
 
     IEnumerator EffectWaitTime(int ID)
     {
         yield return new WaitForSeconds(8);
+        playerEffect.SetActive(false);
         switch (ID)
         {
+            case 6:
+                terrainMove.direction *= -1;
+                break;
             case 5:
                 player.localScale = new Vector3(1, 1, 1);
                 break;

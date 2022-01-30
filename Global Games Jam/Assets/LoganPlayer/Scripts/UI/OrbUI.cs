@@ -35,7 +35,7 @@ public class OrbUI : MonoBehaviour
         if (value >= requiredCollectables)
         {
             //Set all orbs to off
-            for (int i = 0; i < requiredCollectables; i++)
+            for (int i = 0; i < 10; i++)
             {
                 gameObject.transform.GetChild(i).gameObject.GetComponent<Image>().sprite = offSprite;
             }
