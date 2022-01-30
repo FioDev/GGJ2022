@@ -31,6 +31,7 @@ public class Movement2D : MonoBehaviour
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
         if (horizontalMove != 0f)
         {
+            //FindObjectOfType<AudioManager>().Play("PlayerRun");
             horizontalStore = horizontalMove;
         }
         
@@ -54,6 +55,7 @@ public class Movement2D : MonoBehaviour
             if (Input.GetButton("Jump" + playerNumber))
             {
                 jump = true;
+                FindObjectOfType<AudioManager>().Play("Jump");
                 animator.SetBool("IsJumping", true);
             }
 
