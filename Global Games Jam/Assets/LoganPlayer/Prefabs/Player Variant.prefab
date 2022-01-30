@@ -72,8 +72,9 @@ GameObject:
   - component: {fileID: 1984971271}
   - component: {fileID: 1984971272}
   - component: {fileID: 269135114420099790}
-  - component: {fileID: 1520625530}
   - component: {fileID: 1520625531}
+  - component: {fileID: 903674509}
+  - component: {fileID: 903674510}
   m_Layer: 30
   m_Name: Player Variant
   m_TagString: Player1
@@ -268,21 +269,6 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!114 &1520625530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 309615977949096111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 165c96077db57164594e17d1e4f5b253, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orbUIManager: {fileID: 0}
-  effectMan: {fileID: 1520625531}
-  requiredCollectables: 0
 --- !u!114 &1520625531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,6 +286,36 @@ MonoBehaviour:
   terrainMove: {fileID: 0}
   lamp: {fileID: 0}
   playerNumber: 1
+--- !u!114 &903674509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309615977949096111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 165c96077db57164594e17d1e4f5b253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orbUIManager: {fileID: 0}
+  effectMan: {fileID: 1520625531}
+  requiredCollectables: 0
+--- !u!114 &903674510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309615977949096111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8baa0c0686d002a43babe53ed67e5254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BloodSplatter: {fileID: 3043471895594458797, guid: 6766aab33a5ef9d47a89c31e6263a342, type: 3}
+  EffectsLayerForThisPlayer: Effects1
+  TimeSurvivedSeconds: 0
 --- !u!1 &348087596512513614
 GameObject:
   m_ObjectHideFlags: 0

@@ -188,8 +188,8 @@ PrefabInstance:
       value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 1984971273, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
     - {fileID: 269135114420099790, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+    - {fileID: 1520625531, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
 --- !u!1 &2475979110565726069 stripped
 GameObject:
@@ -237,7 +237,7 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!114 &1079293510
+--- !u!114 &2744816389945346208
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -250,9 +250,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orbUIManager: {fileID: 0}
-  effectMan: {fileID: 1079293511}
+  effectMan: {fileID: 2744816389945346209}
   requiredCollectables: 0
---- !u!114 &1079293511
+--- !u!114 &2744816389945346209
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -269,3 +269,18 @@ MonoBehaviour:
   terrainMove: {fileID: 0}
   lamp: {fileID: 0}
   playerNumber: 2
+--- !u!114 &1038522735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2475979110565726069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8baa0c0686d002a43babe53ed67e5254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BloodSplatter: {fileID: 3043471895594458797, guid: 6766aab33a5ef9d47a89c31e6263a342, type: 3}
+  EffectsLayerForThisPlayer: Effects2
+  TimeSurvivedSeconds: 0
