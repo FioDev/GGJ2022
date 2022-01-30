@@ -189,6 +189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1984971273, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+    - {fileID: 269135114420099790, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
 --- !u!1 &2475979110565726069 stripped
 GameObject:
@@ -211,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ab2f4aff3fc00847833d548f524b898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!68 &1079293506
+--- !u!68 &2714442435737826580
 EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

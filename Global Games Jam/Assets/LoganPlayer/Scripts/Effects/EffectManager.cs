@@ -7,6 +7,7 @@ public class EffectManager : MonoBehaviour
 
     private float randomNumber = 0;
     private float storeRandom = 0;
+    public Transform player;
     public Movement2D move2D;
     public TerrainMvmt terrainMove;
     public GameObject lamp;
@@ -25,7 +26,7 @@ public class EffectManager : MonoBehaviour
     {
         do
         {
-            randomNumber = Random.Range(0, 6);
+            randomNumber = Random.Range(0, 7);
         }
         while (randomNumber == storeRandom);
 
@@ -33,6 +34,9 @@ public class EffectManager : MonoBehaviour
 
         switch (randomNumber)
         {
+            case 6:
+                Grow();
+                break;
             case 5:
                 ReverseControls();
                 break;
@@ -89,6 +93,14 @@ public class EffectManager : MonoBehaviour
         StartCoroutine(EffectWaitTime(4));
     }
 
+    private void Grow()
+    {
+        print("Grow!");
+        player.transform.position += new Vector3(0.0f, 1.0f, 0.0f);
+        player.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        StartCoroutine(EffectWaitTime(5));
+    }
+
     private void ReverseScroll() //Stage starts scrolling in reverse
     {
         print("Reverse!");
@@ -100,6 +112,9 @@ public class EffectManager : MonoBehaviour
         yield return new WaitForSeconds(8);
         switch (ID)
         {
+            case 5:
+                player.localScale = new Vector3(1, 1, 1);
+                break;
             case 4:
                 move2D.reverse = false;
                 break;

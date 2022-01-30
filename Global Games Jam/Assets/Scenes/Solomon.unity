@@ -570,7 +570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 257379410587375194, guid: 8e0292f357bb5944da4e47e8b1d436a2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 257379410587375195, guid: 8e0292f357bb5944da4e47e8b1d436a2, type: 3}
       propertyPath: m_RootOrder
@@ -778,7 +778,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1984971271, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
   m_PrefabInstance: {fileID: 574159349386501269}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1520625525}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ab2f4aff3fc00847833d548f524b898, type: 3}
@@ -806,7 +806,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &436756323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1024,7 +1024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2446b5fd3ba65db4ca1d44198c621ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaximumSpeed: 7
+  MaximumSpeed: 4
   direction: 1
   TimeUntilMaxSpeedSeconds: 30
   SpeedOverTime:
@@ -1118,7 +1118,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 257379410587375194, guid: 8e0292f357bb5944da4e47e8b1d436a2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 257379410587375195, guid: 8e0292f357bb5944da4e47e8b1d436a2, type: 3}
       propertyPath: m_RootOrder
@@ -1232,6 +1232,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 794607998}
     m_Modifications:
+    - target: {fileID: 3231127404722875140, guid: 0b20a1f2406c26147b5bab0d3abb10d5, type: 3}
+      propertyPath: ID
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3231127404722875140, guid: 0b20a1f2406c26147b5bab0d3abb10d5, type: 3}
       propertyPath: scoreKeeper
       value: 
@@ -1481,7 +1485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2446b5fd3ba65db4ca1d44198c621ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaximumSpeed: 6
+  MaximumSpeed: 4
   direction: 1
   TimeUntilMaxSpeedSeconds: 30
   SpeedOverTime:
@@ -2406,6 +2410,11 @@ Transform:
   m_Father: {fileID: 1076644191}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1439712911 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2475979110565726079, guid: 1f3a39621ec529a4eaccc05f809223d0, type: 3}
+  m_PrefabInstance: {fileID: 2744816389122594214}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1441737208
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2413,6 +2422,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 515521535}
     m_Modifications:
+    - target: {fileID: 3231127404722875140, guid: 0b20a1f2406c26147b5bab0d3abb10d5, type: 3}
+      propertyPath: ID
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3231127404722875140, guid: 0b20a1f2406c26147b5bab0d3abb10d5, type: 3}
       propertyPath: scoreKeeper
       value: 
@@ -2610,6 +2623,48 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!1 &1520625525 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 309615977949096111, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+  m_PrefabInstance: {fileID: 574159349386501269}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1520625528 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 309615977949096101, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+  m_PrefabInstance: {fileID: 574159349386501269}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1520625530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520625525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 165c96077db57164594e17d1e4f5b253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orbUIManager: {fileID: 25858952}
+  effectMan: {fileID: 1520625531}
+  requiredCollectables: 0
+--- !u!114 &1520625531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520625525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a088535b49b0c4b9b7b9333dd32b19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1439712911}
+  move2D: {fileID: 1079293505}
+  terrainMove: {fileID: 515521536}
+  lamp: {fileID: 1270814364}
+  playerNumber: 1
 --- !u!1 &1573342474
 GameObject:
   m_ObjectHideFlags: 0
@@ -2977,6 +3032,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 195708624700099933, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 309615977949096098, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 309615977949096101, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -3025,22 +3088,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Variant 1
       objectReference: {fileID: 0}
-    - target: {fileID: 574159349895819300, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
-      propertyPath: lamp
-      value: 
-      objectReference: {fileID: 1270814364}
-    - target: {fileID: 574159349895819300, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
-      propertyPath: move2D
-      value: 
-      objectReference: {fileID: 1079293505}
-    - target: {fileID: 574159349895819300, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
-      propertyPath: terrainMove
-      value: 
-      objectReference: {fileID: 515521536}
-    - target: {fileID: 574159349895819301, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
-      propertyPath: orbUIManager
-      value: 
-      objectReference: {fileID: 25858952}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
 --- !u!1001 &2744816389122594214
@@ -3062,6 +3109,10 @@ PrefabInstance:
       propertyPath: move2D
       value: 
       objectReference: {fileID: 320761074}
+    - target: {fileID: 1079293511, guid: 1f3a39621ec529a4eaccc05f809223d0, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1520625528}
     - target: {fileID: 1079293511, guid: 1f3a39621ec529a4eaccc05f809223d0, type: 3}
       propertyPath: terrainMove
       value: 

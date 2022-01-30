@@ -6,7 +6,7 @@ public class OutOfCameraDie : MonoBehaviour
 {
 
     private ScoreManager scoreKeeper;
-
+    
     private void Awake()
     {
         scoreKeeper = GameObject.FindGameObjectWithTag("ScoreKeeper").GetComponent<ScoreManager>();

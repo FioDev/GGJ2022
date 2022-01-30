@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
-    public int p1Score = 0;
-    public int p2Score = 0;
+    public float p1Score = 0;
+    public float p2Score = 0;
     public int scoreGoal = 3;
     public void UpdateScore(float ID)
     {
@@ -19,9 +19,9 @@ public class ScoreManager : MonoBehaviour
                 DeclareWinner(2);
             }
         }
-        else
+        else if (ID == 2)
         {
-            p1Score += 1;
+            p1Score += 1f;
             if (p1Score == 3)
             {
                 DeclareWinner(1);
