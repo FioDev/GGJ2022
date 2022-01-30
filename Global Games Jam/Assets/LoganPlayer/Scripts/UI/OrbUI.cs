@@ -23,7 +23,7 @@ public class OrbUI : MonoBehaviour
         }
         else
         {
-            for (int i = 9; i >= requiredCollectables; i--)
+            for (int i = 9; i > (9 - requiredCollectables); i--)
             {
                 gameObject.transform.GetChild(i).gameObject.SetActive(true);
             }
