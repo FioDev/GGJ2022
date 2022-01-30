@@ -1708,6 +1708,10 @@ PrefabInstance:
       propertyPath: orbUIManager
       value: 
       objectReference: {fileID: 25858952}
+    - target: {fileID: 903674510, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
+      propertyPath: PowerupParticle
+      value: 
+      objectReference: {fileID: 7776064499370928113, guid: 2286c7265f3c71c4181b98b6f2175576, type: 3}
     - target: {fileID: 1520625531, guid: 0887852e0ebd7c34989e6240b5621d0e, type: 3}
       propertyPath: lamp
       value: 
@@ -3264,6 +3268,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Variant 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5812197560884892345, guid: 73157c48668fe8442b959f732d27db2d, type: 3}
+      propertyPath: PowerupParticle
+      value: 
+      objectReference: {fileID: 7776064499370928113, guid: 2286c7265f3c71c4181b98b6f2175576, type: 3}
     - target: {fileID: 5812197561554521433, guid: 73157c48668fe8442b959f732d27db2d, type: 3}
       propertyPath: m_RootOrder
       value: 3
