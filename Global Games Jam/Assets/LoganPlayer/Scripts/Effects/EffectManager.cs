@@ -22,13 +22,6 @@ public class EffectManager : MonoBehaviour
         playerEffectText = playerEffect.GetComponent<Text>();
     }
 
-    private void Update()
-    {
-        if (Input.GetButtonUp("Test" + playerNumber))
-        {
-            RandomizeEffect();
-        }
-    }
     public void RandomizeEffect()
     {
         //Select an effect at random, can't be last effect used
