@@ -23,7 +23,7 @@ public class ScoreManager : MonoBehaviour
             if (ID == 1)
             {
                 p2Score += 1;
-                if (p2Score == 3)
+                if (p2Score == scoreGoal)
                 {
                     DeclareWinner(2);
                 }
@@ -31,7 +31,7 @@ public class ScoreManager : MonoBehaviour
             else if (ID == 2)
             {
                 p1Score += 1f;
-                if (p1Score == 3)
+                if (p1Score == scoreGoal)
                 {
                     DeclareWinner(1);
                 }

@@ -338,7 +338,8 @@ public class TerrainManager : MonoBehaviour
             HazardsPlayer2.SetTile(new Vector3Int(i, 2, 0), null);
         }
 
-        Debug.Log($"Generated {Settings.Width}x{Settings.InitialHeightToGenerate} tiles of terrain in {(DateTime.Now - before).TotalSeconds} seconds for seed {seed}");
+        //Debug.Log($"Generated {Settings.Width}x{Settings.InitialHeightToGenerate} tiles of terrain in {(DateTime.Now - before).TotalSeconds} seconds for seed {seed}");
+        Debug.Log($"Playing on seed {seed}");
 
         InvokeRepeating("CheckGenerateMoreTerrain", Settings.SecondsBetweenGenerationChecks, Settings.SecondsBetweenGenerationChecks);
     }

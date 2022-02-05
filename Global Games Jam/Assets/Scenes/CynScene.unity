@@ -870,7 +870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2446b5fd3ba65db4ca1d44198c621ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaximumSpeed: 4
+  MaximumSpeed: 0
   direction: 1
   TimeUntilMaxSpeedSeconds: 30
   SpeedOverTime:
@@ -1182,7 +1182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   p1Score: 0
   p2Score: 0
-  scoreGoal: 3
+  scoreGoal: 5
   update: 0
   winText: {fileID: 1671406809}
 --- !u!114 &609758965
@@ -1694,7 +1694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2446b5fd3ba65db4ca1d44198c621ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaximumSpeed: 4
+  MaximumSpeed: 0
   direction: 1
   TimeUntilMaxSpeedSeconds: 30
   SpeedOverTime:
@@ -1750,7 +1750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 794607998}
+  volumeTrigger: {fileID: 515521535}
   volumeLayer:
     serializedVersion: 2
     m_Bits: 1048576
@@ -2410,7 +2410,7 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: cf94418947e80eb419ef1a431b49d973, type: 3}
     name: Music
     group: {fileID: -1927870078162595328, guid: a6a7ca9554cfb3d47b75572560bbcc12, type: 2}
-    volume: 0.1
+    volume: 0.5
     pitch: 1
     loop: 1
     source: {fileID: 0}
