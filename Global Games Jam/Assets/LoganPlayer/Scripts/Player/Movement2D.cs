@@ -38,7 +38,15 @@ public class Movement2D : MonoBehaviour
         //If nonstop is applied, keep player moving in last known direction
         if (nonStop)
         {
-            horizontalMove = horizontalStore;
+            // Set values manually to ensure full speed
+            if(horizontalStore < 0)
+            {
+                horizontalMove = -1 * runSpeed;
+            }
+            else
+            {
+                horizontalMove = 1 * runSpeed;
+            }
         }
 
         //If reverse is applied, reverse horizontal controls
