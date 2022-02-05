@@ -27,7 +27,7 @@ public class Movement2D : MonoBehaviour
     void Update()
     {
         //Gets the players horizontal direction
-        horizontalMove = Input.GetAxisRaw("Horizontal" + playerNumber) * runSpeed;
+        horizontalMove = Input.GetAxis("Horizontal" + playerNumber) * runSpeed;
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
         if (horizontalMove != 0f)
         {
@@ -64,7 +64,11 @@ public class Movement2D : MonoBehaviour
         if (!controller.m_Grounded)
         {
             //Gets if the player should dive
-            if (Input.GetButton("Dive" + playerNumber))
+
+            bool shouldDive = Input.GetButton("Dive" + playerNumber) ||
+                Input.GetAxis("Vertical" + playerNumber) > 0;
+
+            if (shouldDive)
             {
                 dive = true;
             }
