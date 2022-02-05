@@ -5,13 +5,14 @@ using UnityEngine.Audio;
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
-    public static AudioManager instance;
+    public static AudioManager Instance { get; protected set; }
+
 
     void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {
@@ -19,7 +20,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-       // DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad(gameObject);
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -38,7 +39,7 @@ public class AudioManager : MonoBehaviour
     //     Play("titleMusic");
     // }
 
-    public void Play (string name)
+    public void Play(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
@@ -49,7 +50,7 @@ public class AudioManager : MonoBehaviour
         s.source.Play();
     }
 
-    public void Stop (string name)
+    public void Stop(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
